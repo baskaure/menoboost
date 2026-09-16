@@ -45,6 +45,7 @@ svg.i.fill{fill:currentColor;stroke:none}
 /* visuels de type infographie : jamais recadres */
 .figure{background:#fff;border:1px solid var(--line);border-radius:26px;padding:18px;overflow:hidden}
 .figure img{width:100%;height:auto;border-radius:14px}
+.figure.scrollx{scrollbar-width:thin}
 
 /* NAV */
 header{position:fixed;top:18px;left:0;right:0;z-index:200}
@@ -71,8 +72,30 @@ nav.links a:hover{color:var(--navy)}
 .btn-sm{padding:11px 20px;font-size:13.5px}
 .round{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.1);display:grid;place-items:center}
 
+
+/* ---- menu burger ---- */
+.burger{display:none;width:44px;height:44px;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  border:0;background:transparent;border-radius:50%;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+.burger span{display:block;width:20px;height:2px;border-radius:2px;background:var(--navy);
+  transition:transform .35s var(--e),opacity .2s var(--e)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mnav{display:none;margin-top:10px;background:#EEF3EA;border:1px solid var(--line);border-radius:26px;padding:14px;
+  box-shadow:0 26px 60px -30px rgba(0,51,88,.55);max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);overflow-y:auto;
+  opacity:0;visibility:hidden;transform:translateY(-12px);
+  transition:opacity .3s var(--e),transform .35s var(--e),visibility 0s .35s}
+.mnav.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s var(--e),transform .35s var(--e),visibility 0s}
+.mnav a.ml{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:14px 18px;
+  border-radius:16px;font-size:17px;font-weight:600;color:var(--navy);transition:background .25s var(--e)}
+.mnav a.ml:hover,.mnav a.ml:focus-visible{background:rgba(126,162,102,.18)}
+.mnav a.ml svg.i{width:17px;height:17px;color:var(--green-dp)}
+.mnav-foot{display:grid;gap:10px;margin-top:12px;padding-top:14px;border-top:1px solid var(--line)}
+.mnav-foot .btn{justify-content:center;min-height:52px}
+body.no-scroll{overflow:hidden}
+
 /* HERO */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;isolation:isolate}
+.hero{min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:1fr 1fr;position:relative;isolation:isolate}
 .hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0;background:var(--mint-2)}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scaleX(-1)}
 .hero-l{background:rgba(0,51,88,.8);backdrop-filter:blur(30px) saturate(1.25);-webkit-backdrop-filter:blur(30px) saturate(1.25);border-right:1px solid rgba(255,255,255,.16);color:#fff;padding:150px 60px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;z-index:2}
@@ -164,7 +187,7 @@ section{padding:118px 0}
 .result .box{background:var(--green);border-radius:28px;padding:40px 42px;display:flex;gap:34px;align-items:center;flex-wrap:wrap}
 .result .kpi{font-family:"Bricolage Grotesque";font-size:86px;line-height:.85;font-weight:700;letter-spacing:-.06em;color:var(--navy)}
 .result .kpi small{font-size:26px;font-weight:500}
-.result .box p{flex:1;min-width:260px;color:rgba(0,38,63,.88);font-size:16.5px}
+.result .box p{flex:1;min-width:min(260px,100%);color:rgba(0,38,63,.88);font-size:16.5px}
 .result .ph{border-radius:28px;min-height:190px}
 
 /* PARCOURS */
@@ -254,33 +277,8 @@ footer a:hover{color:var(--navy)}
 .f-words svg.i{width:.3em;height:.3em;color:var(--green-dp)}
 .f-bot{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
 
-@media(max-width:1060px){
-  .hero{grid-template-columns:1fr}
-  .hero-r{min-height:56vh}
-  .hero-bg img{object-position:50% 4%}
-  .hero-l{background:rgba(0,51,88,.88);border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}
-  .hero-over{left:6%;top:auto;bottom:16%}
-  .hero-l{padding:130px 28px 60px}
-  .scroll-hint{display:none}
-  .bento,.piliers{grid-template-columns:1fr 1fr}
-  .split,.about,.formules,.result,.sec-head,.parcours{grid-template-columns:1fr}
-  .about-media,.parcours .figure{position:static}
-  .tcards{grid-template-columns:1fr}
-  .row{grid-template-columns:72px 1fr;gap:18px}
-  .row .ph{width:72px;height:72px;border-radius:18px}
-  .row .d,.row .meta{display:none}
-  .row .btn{grid-column:2}
-  nav.links{display:none}
-  .f-grid{grid-template-columns:1fr 1fr}
-  .cta{padding:60px 24px;border-radius:28px}
-}
-@media(max-width:620px){
-  .nav-end>a:first-child{display:none}
-  .bento,.piliers{grid-template-columns:1fr}.bx.span2{grid-column:span 1}
-  section{padding:78px 0}
-  .step{grid-template-columns:1fr}
-  .offert{padding:24px}
-}
+
+
 
 /* ABOUT */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
@@ -302,6 +300,62 @@ footer a:hover{color:var(--navy)}
 .signature .ph{width:56px;height:56px;border-radius:50%;flex:0 0 56px}
 .signature .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:23px;letter-spacing:-.03em;color:var(--navy)}
 .signature .r{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* ================= RESPONSIVE (toujours en fin de feuille) ================= */
+@media(max-width:1060px){
+  .hero{grid-template-columns:1fr}
+  .hero-r{min-height:56vh}
+  .hero-bg img{object-position:50% 4%}
+  .hero-l{background:rgba(0,51,88,.88);border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}
+  .hero-over{left:6%;top:auto;bottom:16%}
+  .hero-l{padding:130px 28px 60px}
+  .scroll-hint{display:none}
+  .bento,.piliers{grid-template-columns:1fr 1fr}
+  .split,.about,.formules,.result,.sec-head,.parcours{grid-template-columns:1fr}
+  .about-media,.parcours .figure{position:static}
+  .parcours .figure{max-width:430px;margin-inline:auto}
+  .figure.scrollx{overflow-x:auto;padding:12px}
+  .figure.scrollx img{min-width:680px}
+  .sp{padding:34px 26px}
+  .fm{padding:34px 26px}
+  .about{gap:38px}
+  .result .box{padding:32px 28px;gap:24px}
+  .step{padding:24px 22px}
+  .btn-sm{min-height:44px}
+  .tcards{grid-template-columns:1fr}
+  .row{grid-template-columns:72px 1fr;gap:18px}
+  .row .ph{width:72px;height:72px;border-radius:18px}
+  .row .d,.row>.meta{display:none}
+  .row .btn{grid-column:2}
+  nav.links{display:none}
+  .burger{display:flex}
+  .mnav{display:block}
+  .nav-end>a:first-child,.nav-end .cart{display:none}
+  .logo img{height:34px}
+  .nav{gap:14px;padding:8px 8px 8px 18px}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .cta{padding:60px 24px;border-radius:28px}
+}
+@media(max-width:620px){
+  .bento,.piliers{grid-template-columns:1fr}
+  .bento{grid-auto-rows:auto}
+  .bx.span2{grid-column:span 1}
+  .bx{min-height:0}
+  .bx p{margin-top:16px}
+  .pil{min-height:0}
+  .pil p{margin-top:16px}
+  section{padding:78px 0}
+  .step{grid-template-columns:1fr}
+  .offert{padding:24px;gap:18px}
+  .offert ul{gap:14px}
+  .wrap{width:calc(100% - 36px)}
+  .f-grid{grid-template-columns:1fr;gap:30px}
+  .cta{padding:52px 20px}
+  .sp{padding:28px 20px}
+  .fm{padding:28px 20px}
+  .about .block{margin-top:30px;padding-top:24px}
+  .mnav a.ml{font-size:16px}
+}
 </style>
 </head>
 <body>
@@ -337,7 +391,7 @@ footer a:hover{color:var(--navy)}
   <div class="wrap nav">
     <a href="#" class="logo"><img src="images/logo-menoboost.png" alt="Ménoboost — Health &amp; Sport"></a>
     <nav class="links">
-      <a href="#">Accueil</a><a href="#about">Qui suis-je ?</a><a href="#programme">Programmes</a>
+      <a href="#">Accueil</a><a href="#about">Qui suis-je ?</a><a href="#programme">Programmes</a>
       <a href="#accomp">Accompagnements</a><a href="#temoignages">Témoignages</a><a href="#contact">Contact</a>
     </nav>
     <div class="nav-end">
@@ -345,7 +399,22 @@ footer a:hover{color:var(--navy)}
       <span class="cart"><svg class="i"><use href="#i-bag"/></svg>0</span>
       <a href="#contact" class="btn btn-dark btn-sm">Contacter</a>
     </div>
+    <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <div class="wrap"><div class="mnav" id="mobile-menu" aria-hidden="true">
+    <a class="ml" href="#">Accueil<svg class="i"><use href="#i-chevron-right"/></svg></a>
+    <a class="ml" href="#about">Qui suis-je ?<svg class="i"><use href="#i-chevron-right"/></svg></a>
+    <a class="ml" href="#programme">Programmes<svg class="i"><use href="#i-chevron-right"/></svg></a>
+    <a class="ml" href="#accomp">Accompagnements<svg class="i"><use href="#i-chevron-right"/></svg></a>
+    <a class="ml" href="#temoignages">Témoignages<svg class="i"><use href="#i-chevron-right"/></svg></a>
+    <a class="ml" href="#contact">Contact<svg class="i"><use href="#i-chevron-right"/></svg></a>
+    <div class="mnav-foot">
+      <a href="#" class="btn btn-out">Se connecter</a>
+      <a href="tel:+33687164758" class="btn btn-green"><svg class="i"><use href="#i-phone"/></svg>06 87 16 47 58</a>
+    </div>
+  </div></div>
 </header>
 
 <!-- HERO -->
@@ -463,7 +532,7 @@ footer a:hover{color:var(--navy)}
       </div>
     </div>
     <div>
-      <span class="tag">Qui suis-je ?</span>
+      <span class="tag">Qui suis-je ?</span>
       <h2 style="margin-top:20px">Coach sportive, nutrition &amp; mental — <span class="serif">experte certifiée en ménopause.</span></h2>
 
       <div class="block">
@@ -487,11 +556,11 @@ footer a:hover{color:var(--navy)}
       </div>
 
       <div class="block">
-        <h3>Pourquoi la ménopause ?</h3>
+        <h3>Pourquoi la ménopause ?</h3>
         <p>En arrivant moi-même à la ménopause, j'ai été confrontée à ses effets : fatigue, prise de poids (+5 kg). Ce changement, je ne le comprenais pas — je n'avais rien changé et j'avais une bonne hygiène de vie.</p>
         <p>Je me suis rendu compte que beaucoup de femmes vivent cela <strong>sans repères, sans accompagnement, souvent dans le silence et la solitude</strong>. J'ai donc décidé de me spécialiser : formée auprès d'une nutrithérapeute reconnue, j'ai obtenu une <strong>certification d'Experte en Ménopause</strong>.</p>
         <p>Ce programme, mis en place depuis plus de 2 ans, a aidé des centaines de femmes à retrouver confiance et estime d'elles-mêmes, à diminuer les symptômes et à perdre du poids durablement. Chaque organisme est différent, plus ou moins lent, mais elles ont perdu entre <strong>7 et 8 kg en 12 semaines</strong>.</p>
-        <p><strong>Maintenant, c'est à vous d'y aller ! Je serai votre soutien et votre appui durant tout le processus — je ne vous lâche pas.</strong></p>
+        <p><strong>Maintenant, c'est à vous d'y aller ! Je serai votre soutien et votre appui durant tout le processus — je ne vous lâche pas.</strong></p>
       </div>
 
       <div class="signature">
@@ -615,7 +684,7 @@ footer a:hover{color:var(--navy)}
       </ul>
     </div>
 
-    <div class="figure rv" style="margin-top:16px">
+    <div class="figure scrollx rv" style="margin-top:16px">
       <img src="images/formules.avif" alt="Comparatif détaillé des formules présentiel et en ligne" loading="lazy">
     </div>
   </div>
@@ -710,7 +779,7 @@ footer a:hover{color:var(--navy)}
         <a href="#" class="logo sm"><img src="images/logo-menoboost.png" alt="Ménoboost — Health &amp; Sport"></a>
         <p style="margin-top:16px;max-width:34ch;color:var(--muted);font-size:15px">Ménopause &amp; vitalité. Un accompagnement complet pour les femmes de plus de 40 ans, en visio ou en présentiel.</p>
       </div>
-      <div><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#about">Qui suis-je ?</a></li><li><a href="#programme">Programmes</a></li><li><a href="#accomp">Accompagnements</a></li></ul></div>
+      <div><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#about">Qui suis-je ?</a></li><li><a href="#programme">Programmes</a></li><li><a href="#accomp">Accompagnements</a></li></ul></div>
       <div><h5>Ressources</h5><ul><li><a href="#temoignages">Témoignages</a></li><li><a href="#">Conseils &amp; vitalité</a></li><li><a href="#">Menus &amp; recettes</a></li><li><a href="#">Se connecter</a></li></ul></div>
       <div><h5>Contact</h5><ul><li><a href="tel:+33687164758">06 87 16 47 58</a></li><li><a href="#">Réserver un RDV Calendly</a></li><li><a href="#">contact@menoboost.fr</a></li><li>Visio ou présentiel</li></ul></div>
     </div>
@@ -727,6 +796,20 @@ footer a:hover{color:var(--navy)}
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+const burger=document.getElementById('burger'), mnav=document.getElementById('mobile-menu');
+const setMenu=o=>{
+  burger.setAttribute('aria-expanded',o);
+  burger.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu');
+  mnav.classList.toggle('open',o);
+  mnav.setAttribute('aria-hidden',!o);
+  document.body.classList.toggle('no-scroll',o);
+};
+burger.addEventListener('click',e=>{e.stopPropagation();setMenu(burger.getAttribute('aria-expanded')!=='true')});
+mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+document.addEventListener('click',e=>{if(!e.target.closest('header'))setMenu(false)});
+matchMedia('(min-width:1061px)').addEventListener('change',e=>{if(e.matches)setMenu(false)});
 </script>
 </body>
 </html>
