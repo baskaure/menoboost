@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MENOBOOST — Vivez votre ménopause avec énergie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F8F1E7;
+  --cream-2:#F1E5D6;
+  --ink:#2B1810;
+  --ink-soft:#5B4438;
+  --terra:#BE5439;
+  --terra-dk:#943F2A;
+  --amber:#DE8B4F;
+  --sage:#7C8B67;
+  --line:rgba(43,24,16,.14);
+  --r:26px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Karla",sans-serif;
+  font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+h1,h2,h3,h4{font-family:"Fraunces",serif;font-weight:400;line-height:1.02;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1240px,92vw);margin-inline:auto}
+.eyebrow{
+  font-family:"Karla",sans-serif;font-size:11.5px;letter-spacing:.34em;
+  text-transform:uppercase;font-weight:700;color:var(--terra);
+}
+.italic{font-style:italic;font-variation-settings:"SOFT" 100}
+
+/* ---------- NAV ---------- */
+header{position:sticky;top:0;z-index:100;background:rgba(248,241,231,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:34px;height:76px}
+.logo{font-family:"Fraunces",serif;font-size:25px;letter-spacing:-.04em;font-weight:600;display:flex;align-items:center;gap:9px}
+.logo i{width:9px;height:9px;border-radius:50%;background:var(--terra);display:block;font-style:normal}
+nav.links{display:flex;gap:26px;margin-left:auto;font-size:14.5px;font-weight:500}
+nav.links a{position:relative;padding:4px 0;color:var(--ink-soft);transition:color .3s var(--ease)}
+nav.links a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:var(--terra);transition:width .35s var(--ease)}
+nav.links a:hover{color:var(--ink)}
+nav.links a:hover::after{width:100%}
+.nav-end{display:flex;align-items:center;gap:16px;font-size:14px}
+.cart{display:flex;align-items:center;gap:6px;color:var(--ink-soft)}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 28px;
+  font-weight:700;font-size:13px;letter-spacing:.11em;text-transform:uppercase;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s;
+}
+.btn-solid{background:var(--ink);color:var(--cream);box-shadow:0 10px 26px -14px rgba(43,24,16,.8)}
+.btn-solid:hover{transform:translateY(-3px);box-shadow:0 20px 40px -18px rgba(43,24,16,.9)}
+.btn-terra{background:var(--terra);color:#fff;box-shadow:0 10px 26px -12px rgba(190,84,57,.8)}
+.btn-terra:hover{transform:translateY(-3px);background:var(--terra-dk)}
+.btn-ghost{border:1.4px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-3px)}
+.btn-sm{padding:11px 20px;font-size:11.5px}
+
+/* ---------- PHOTO PLACEHOLDERS ---------- */
+.ph{position:relative;overflow:hidden;background:
+   radial-gradient(120% 90% at 20% 15%, #E8C9A8 0%, transparent 60%),
+   radial-gradient(100% 100% at 85% 80%, #C58A66 0%, transparent 65%),
+   linear-gradient(150deg,#D8B195,#A9755A);
+  isolation:isolate;}
+.ph::after{
+  content:attr(data-ph);position:absolute;left:16px;bottom:14px;right:16px;
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:600;
+}
+.ph::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+.ph-sage{background:radial-gradient(120% 90% at 25% 20%,#C3CDAE 0,transparent 60%),linear-gradient(150deg,#9FAE87,#5F6E4C)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:74px 0 0;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;top:-340px;right:-260px;width:820px;height:820px;border-radius:50%;
+  background:radial-gradient(circle,rgba(222,139,79,.34),transparent 62%);filter:blur(30px);
+}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:end;position:relative}
+.hero h1{font-size:clamp(46px,6.4vw,92px);font-weight:300;letter-spacing:-.035em}
+.hero h1 b{font-weight:600;font-variation-settings:"SOFT" 60}
+.hero h1 em{font-style:italic;color:var(--terra);font-weight:400}
+.hero p.lead{margin-top:28px;max-width:52ch;color:var(--ink-soft);font-size:17.5px}
+.hero p.lead strong{color:var(--ink);font-weight:700}
+.hero-cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+.hero-media{position:relative}
+.hero-media .ph{height:560px;border-radius:300px 300px 26px 26px}
+.float-card{
+  position:absolute;background:rgba(248,241,231,.94);backdrop-filter:blur(8px);
+  border-radius:18px;padding:16px 20px;box-shadow:0 22px 50px -26px rgba(43,24,16,.6);
+  animation:floaty 6s ease-in-out infinite;
+}
+.float-card .n{font-family:"Fraunces",serif;font-size:30px;line-height:1;font-weight:600}
+.float-card .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:5px}
+.fc-1{left:-40px;top:78px}
+.fc-2{right:-18px;bottom:96px;animation-delay:-3s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-strip{
+  margin-top:70px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.hero-strip div{padding:26px 8px;text-align:center;font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--ink-soft)}
+.hero-strip div+div{border-left:1px solid var(--line)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- SECTION GENERIC ---------- */
+section{padding:112px 0}
+.sec-head{max-width:70ch}
+.sec-head h2{font-size:clamp(32px,4.2vw,58px);margin-top:16px;font-weight:300}
+.sec-head h2 b{font-weight:600}
+.sec-head p{margin-top:20px;color:var(--ink-soft);max-width:60ch}
+
+/* ---------- AVANT / APRES ---------- */
+.ba{background:var(--cream-2);border-radius:44px;padding:64px 54px;position:relative;overflow:hidden}
+.ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:44px;align-items:start;margin-top:48px}
+.ba-col h3{font-size:14px;letter-spacing:.3em;text-transform:uppercase;font-family:"Karla";font-weight:800}
+.ba-col.before h3{color:var(--ink-soft)}
+.ba-col.after h3{color:var(--terra)}
+.ba-col ul{list-style:none;margin-top:24px;display:grid;gap:2px}
+.ba-col li{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line);font-size:16.5px}
+.ba-col li span.ic{flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;margin-top:2px}
+.before li span.ic{background:rgba(43,24,16,.08);color:var(--ink-soft)}
+.after li span.ic{background:var(--terra);color:#fff}
+.after li{color:var(--ink);font-weight:500}
+.ba-arrow{align-self:center;width:66px;height:66px;border-radius:50%;background:var(--ink);color:var(--cream);display:grid;place-items:center;font-size:22px}
+.ba-photo{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ba-photo .ph{height:210px;border-radius:20px}
+
+/* ---------- PILIERS ---------- */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border-top:1px solid var(--line)}
+.pillar{padding:34px 26px 34px 0;border-right:1px solid var(--line);position:relative;transition:background .4s var(--ease)}
+.pillar:last-child{border-right:0}
+.pillar:not(:first-child){padding-left:26px}
+.pillar .num{font-family:"Fraunces",serif;font-size:13px;letter-spacing:.2em;color:var(--terra);font-weight:700}
+.pillar h4{font-size:26px;margin:14px 0 10px;font-weight:500}
+.pillar p{font-size:15px;color:var(--ink-soft)}
+.pillar::before{content:"";position:absolute;top:-1px;left:0;height:2px;width:0;background:var(--terra);transition:width .5s var(--ease)}
+.pillar:hover::before{width:100%}
+.goal{
+  margin-top:56px;display:flex;gap:34px;align-items:center;flex-wrap:wrap;
+  background:var(--ink);color:var(--cream);border-radius:32px;padding:44px 48px;
+}
+.goal .big{font-family:"Fraunces",serif;font-size:74px;line-height:.9;font-weight:300}
+.goal .big b{font-weight:600;color:var(--amber)}
+.goal p{max-width:46ch;color:rgba(248,241,231,.76);font-size:16px}
+.goal .sep{width:1px;height:78px;background:rgba(248,241,231,.22)}
+
+/* ---------- QUI SUIS-JE ---------- */
+.about{background:var(--ink);color:var(--cream);border-radius:44px;padding:72px 0;position:relative;overflow:hidden}
+.about::before{content:"";position:absolute;width:700px;height:700px;border-radius:50%;left:-260px;bottom:-320px;background:radial-gradient(circle,rgba(222,139,79,.2),transparent 65%)}
+.about .wrap{position:relative}
+.about-top{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.about-top .ph{height:520px;border-radius:26px 26px 260px 260px}
+.about h2{font-size:clamp(30px,3.6vw,50px);font-weight:300;color:var(--cream)}
+.about h2 em{font-style:italic;color:var(--amber)}
+.mission{list-style:none;margin-top:28px;display:grid;gap:12px}
+.mission li{padding-left:24px;position:relative;color:rgba(248,241,231,.8)}
+.mission li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:1.5px;background:var(--amber)}
+.story{display:grid;grid-template-columns:repeat(2,1fr);gap:46px;margin-top:72px;padding-top:56px;border-top:1px solid rgba(248,241,231,.16)}
+.story h3{font-size:24px;color:var(--amber);font-weight:400;margin-bottom:16px}
+.story p{color:rgba(248,241,231,.74);font-size:16px;margin-bottom:16px}
+.story p strong{color:var(--cream);font-weight:600}
+.sign{margin-top:44px;display:flex;align-items:center;gap:18px}
+.sign .ph{width:64px;height:64px;border-radius:50%;flex:0 0 64px}
+.sign .ph::after{display:none}
+.sign .name{font-family:"Fraunces",serif;font-size:30px;font-style:italic;font-weight:400}
+.sign .role{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(248,241,231,.6);margin-top:4px}
+
+/* ---------- PROGRAMME / FORMULES ---------- */
+.formules{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:52px}
+.formule{
+  border:1px solid var(--line);border-radius:30px;padding:40px 36px;background:#fff9f1;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s;
+  position:relative;overflow:hidden;
+}
+.formule:hover{transform:translateY(-8px);box-shadow:0 34px 60px -34px rgba(43,24,16,.5);border-color:transparent}
+.formule .tag{display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;padding:7px 14px;border-radius:999px;background:rgba(190,84,57,.1);color:var(--terra)}
+.formule h3{font-size:34px;margin:20px 0 8px;font-weight:500}
+.formule .dur{font-size:14px;color:var(--ink-soft)}
+.formule ul{list-style:none;margin:26px 0 30px;display:grid;gap:11px}
+.formule li{display:flex;gap:11px;font-size:15.5px;color:var(--ink-soft)}
+.formule li b{color:var(--terra)}
+.formule.hi{background:var(--ink);color:var(--cream);border-color:transparent}
+.formule.hi h3,.formule.hi .dur{color:var(--cream)}
+.formule.hi li{color:rgba(248,241,231,.78)}
+.formule.hi li b{color:var(--amber)}
+.formule.hi .tag{background:rgba(222,139,79,.18);color:var(--amber)}
+
+/* ---------- ACCOMPAGNEMENTS ---------- */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px}
+.card{border-radius:24px;overflow:hidden;background:#fff9f1;border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.card:hover{transform:translateY(-10px);box-shadow:0 34px 56px -32px rgba(43,24,16,.48)}
+.card .ph{height:190px}
+.card .body{padding:24px 22px 26px;display:flex;flex-direction:column;flex:1}
+.card h4{font-size:22px;font-weight:500;line-height:1.14}
+.card .sub{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-top:8px}
+.card p{font-size:14.5px;color:var(--ink-soft);margin-top:12px;flex:1}
+.card .btn{margin-top:20px;justify-content:center}
+
+/* ---------- TEMOIGNAGES ---------- */
+.testis{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+.testi{background:var(--cream-2);border-radius:26px;padding:34px 30px;position:relative}
+.testi .q{font-family:"Fraunces",serif;font-size:62px;line-height:.6;color:var(--terra);opacity:.35}
+.testi p{margin-top:18px;font-size:16.5px;font-style:italic;font-family:"Fraunces",serif;font-weight:300;line-height:1.5}
+.testi .who{margin-top:24px;display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:18px}
+.testi .av{width:40px;height:40px;border-radius:50%;flex:0 0 40px}
+.testi .av::after{display:none}
+.testi .who b{display:block;font-family:"Karla";font-size:14.5px}
+.testi .who span{font-size:12px;color:var(--ink-soft)}
+.stars{color:var(--amber);font-size:13px;letter-spacing:2px;margin-top:6px}
+
+/* ---------- CTA ---------- */
+.final{background:linear-gradient(140deg,var(--terra),#8E3826);color:#fff;border-radius:44px;padding:88px 54px;text-align:center;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+.final h2{font-size:clamp(34px,5vw,68px);font-weight:300;position:relative}
+.final h2 em{font-style:italic}
+.final p{max-width:52ch;margin:22px auto 0;color:rgba(255,255,255,.84);position:relative}
+.final .btn{margin-top:36px;position:relative}
+.btn-cream{background:var(--cream);color:var(--ink)}
+.btn-cream:hover{transform:translateY(-3px)}
+
+/* ---------- MARQUEE ---------- */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;margin-top:0}
+.marquee div{display:flex;gap:44px;white-space:nowrap;animation:slide 26s linear infinite;font-family:"Fraunces",serif;font-size:30px;font-style:italic;color:var(--ink-soft);font-weight:300}
+.marquee span{display:flex;align-items:center;gap:44px}
+.marquee i{font-style:normal;color:var(--terra)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:rgba(248,241,231,.66);padding:72px 0 34px;margin-top:0}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px}
+footer h5{font-family:"Karla";font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;font-weight:800}
+footer ul{list-style:none;display:grid;gap:10px;font-size:15px}
+footer a:hover{color:var(--cream)}
+footer .logo{color:var(--cream);font-size:28px}
+.f-bot{margin-top:54px;padding-top:22px;border-top:1px solid rgba(248,241,231,.14);display:flex;justify-content:space-between;gap:16px;font-size:12.5px;flex-wrap:wrap}
+
+@media(max-width:1040px){
+  .hero-grid,.about-top,.story,.ba-grid{grid-template-columns:1fr}
+  .ba-arrow{transform:rotate(90deg);margin:0 auto}
+  .pillars,.cards{grid-template-columns:repeat(2,1fr)}
+  .pillar{border-right:0;border-bottom:1px solid var(--line);padding-left:0!important;padding-right:0}
+  .testis,.formules{grid-template-columns:1fr}
+  nav.links{display:none}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .hero-media .ph{height:420px}
+  .fc-1{left:0}
+}
+@media(max-width:620px){
+  .hero-strip{grid-template-columns:1fr 1fr}
+  .hero-strip div:nth-child(3){border-left:0}
+  .cards{grid-template-columns:1fr}
+  .ba,.final,.about{border-radius:28px;padding-left:22px;padding-right:22px}
+  .goal{padding:30px 24px}
+  .goal .sep{display:none}
+  section{padding:76px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo"><i></i>Menoboost</a>
+    <nav class="links">
+      <a href="#">Accueil</a>
+      <a href="#about">Qui suis-je ?</a>
+      <a href="#programme">Programmes</a>
+      <a href="#accomp">Accompagnements</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-end">
+      <a href="#">Se connecter</a>
+      <span class="cart">◦ 0</span>
+      <a href="#contact" class="btn btn-solid btn-sm">Contacter</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="rv in">
+        <p class="eyebrow">Péri-ménopause &amp; ménopause · +40 ans</p>
+        <h1>Vivez votre<br>ménopause<br><b>avec</b> <em>énergie</em></h1>
+        <p class="lead">Retrouvez votre <strong>vitalité</strong> avec un accompagnement personnalisé, adapté à chacune. Je vous guide vers une ménopause sereine : réconciliez-vous avec votre corps, bougez différemment, retrouvez un sommeil apaisé, équilibrez votre microbiote et un esprit plus stable — sans subir les effets indésirables de la ménopause.</p>
+        <div class="hero-cta">
+          <a href="#accomp" class="btn btn-terra">Réserver mon appel</a>
+          <a href="#programme" class="btn btn-ghost">Découvrir le programme</a>
+        </div>
+      </div>
+      <div class="hero-media rv in">
+        <div class="ph" data-ph="Photo — femme 50 ans rayonnante, lumière naturelle"></div>
+        <div class="float-card fc-1"><div class="n">-8 kg</div><div class="l">en 12 semaines</div></div>
+        <div class="float-card fc-2"><div class="n">+500</div><div class="l">femmes accompagnées</div></div>
+      </div>
+    </div>
+    <div class="hero-strip">
+      <div>Bien-être</div><div>Vitalité</div><div>Nutrition</div><div>Sérénité</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Une expertise au service de votre bien-être</p>
+      <h2>La ménopause ne doit pas rimer avec<br><b>fatigue, prise de poids</b> et perte de contrôle.</h2>
+      <p>Si vous vous sentez épuisée, si votre sommeil est perturbé, si votre corps change sans que vous compreniez pourquoi… ce n'est pas une fatalité. Accompagnement <strong>en visio ou en présentiel</strong>.</p>
+    </div>
+
+    <div class="ba rv" style="margin-top:56px">
+      <div class="ba-grid">
+        <div class="ba-col before">
+          <h3>Avant</h3>
+          <ul>
+            <li><span class="ic">−</span>Vous prenez du poids sans raison</li>
+            <li><span class="ic">−</span>Vous êtes fatiguée dès le réveil</li>
+            <li><span class="ic">−</span>Vos nuits sont hachées ou trop courtes</li>
+            <li><span class="ic">−</span>Vous avez des bouffées de chaleur</li>
+            <li><span class="ic">−</span>Vous manquez d'énergie au quotidien</li>
+            <li><span class="ic">−</span>Vos émotions sont plus fortes, parfois difficiles à digérer</li>
+          </ul>
+        </div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-col after">
+          <h3>Après</h3>
+          <ul>
+            <li><span class="ic">✓</span>Plus d'énergie au quotidien</li>
+            <li><span class="ic">✓</span>Un sommeil plus profond</li>
+            <li><span class="ic">✓</span>Un corps plus tonique</li>
+            <li><span class="ic">✓</span>Moins de fluctuations émotionnelles</li>
+            <li><span class="ic">✓</span>Une meilleure compréhension de votre corps</li>
+            <li><span class="ic">✓</span>Des repas adaptés à vos besoins</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ba-photo">
+        <div class="ph" data-ph="Photo — femme dans une serre"></div>
+        <div class="ph ph-sage" data-ph="Photo — pierres lisses empilées"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILIERS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">La méthode</p>
+      <h2>Mon programme vous aide à <b>reprendre la main</b>, étape par étape.</h2>
+    </div>
+    <div class="pillars rv">
+      <div class="pillar"><div class="num">01</div><h4>Le mouvement</h4><p>Bouger autrement, pour préserver la masse musculaire et l'os — pas pour s'épuiser.</p></div>
+      <div class="pillar"><div class="num">02</div><h4>L'alimentation</h4><p>Des repas adaptés à vos besoins hormonaux et à votre microbiote, sans régime.</p></div>
+      <div class="pillar"><div class="num">03</div><h4>Le stress &amp; les émotions</h4><p>Comprendre et apaiser ce qui se joue, formée auprès de l'Institut de Coaching International.</p></div>
+      <div class="pillar"><div class="num">04</div><h4>La complémentation</h4><p>Une supplémentation ciblée et adaptée, jamais standardisée.</p></div>
+    </div>
+    <div class="goal rv">
+      <div class="big">-8<b>kg</b></div>
+      <div class="sep"></div>
+      <div>
+        <p style="font-family:'Fraunces',serif;font-size:24px;color:var(--cream);line-height:1.25;font-weight:300">En 12 semaines, perdez les kilos que vous jugez en trop — <em style="color:var(--amber)">et stabilisez durablement</em>.</p>
+        <p style="margin-top:12px">Mieux dormir, retrouver votre tonus, et vous sentir à nouveau vous-même.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUI SUIS-JE -->
+<section id="about" style="padding-top:0">
+  <div class="wrap">
+    <div class="about rv">
+      <div class="wrap" style="width:min(1120px,90%)">
+        <div class="about-top">
+          <div class="ph" data-ph="Portrait — Céline Thomelin"></div>
+          <div>
+            <p class="eyebrow" style="color:var(--amber)">Qui suis-je ?</p>
+            <h2 style="margin-top:16px">La ménopause n'est pas une fin, c'est une transition. Je vous accompagne pour la vivre comme une <em>renaissance</em>.</h2>
+            <p style="color:rgba(248,241,231,.74);margin-top:24px">Ma mission aujourd'hui : accompagner les femmes de plus de 40 ans à mieux vivre leur péri-ménopause ou ménopause, pour les aider à…</p>
+            <ul class="mission">
+              <li>Comprendre ce qui se passe dans leur corps</li>
+              <li>Réduire les symptômes</li>
+              <li>Retrouver l'énergie et l'équilibre</li>
+              <li>Se sentir bien dans leur corps et dans leur tête</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="story">
+          <div>
+            <h3>Mon parcours</h3>
+            <p>Coach sportive depuis mes 18 ans, j'ai toujours vu le sport comme un outil pour <strong>bien vieillir</strong>, pas seulement pour changer son apparence.</p>
+            <p>Très tôt, j'ai été marquée par ce que vivait ma mère : les régimes à répétition, les effets yo-yo, la frustration. J'ai compris que ce modèle ne fonctionnait pas sur le long terme et qu'il créait surtout beaucoup de souffrance. C'est ce qui m'a poussée à chercher une autre approche.</p>
+            <p>Au départ, j'accompagnais par le sport. Mais j'ai vite constaté une limite : perdre du poids ne suffit pas si l'alimentation n'est pas adaptée. Je me suis donc formée en <strong>nutrition sportive</strong>.</p>
+            <p>Puis j'ai observé autre chose. Même avec le sport et une bonne alimentation, certains blocages restaient : peurs, habitudes familiales, rapport à la nourriture, émotions mal gérées — souvent de façon inconsciente. J'ai alors intégré un troisième pilier : <strong>le mental</strong>, en me formant au développement personnel et à la gestion du stress auprès de l'ICI (Institut de Coaching International).</p>
+          </div>
+          <div>
+            <h3>Pourquoi la ménopause ?</h3>
+            <p>En arrivant moi-même à la ménopause, j'ai été confrontée à ses effets : fatigue, prise de poids (+5 kg). Ce changement, je ne le comprenais pas — je n'avais rien changé et j'avais une bonne hygiène de vie.</p>
+            <p>Je me suis rendu compte que beaucoup de femmes vivent cela <strong>sans repères, sans accompagnement, souvent dans le silence et la solitude</strong>.</p>
+            <p>J'ai donc décidé de me spécialiser : formée auprès d'une nutrithérapeute reconnue, j'ai obtenu une <strong>certification d'Experte en Ménopause</strong>.</p>
+            <p>Ce programme, mis en place depuis plus de 2 ans, a aidé des centaines de femmes à retrouver confiance et estime d'elles-mêmes, à diminuer les symptômes et à perdre du poids durablement — entre 7 et 8 kg en 12 semaines.</p>
+            <p><strong>Maintenant, c'est à vous d'y aller ! Je serai votre soutien et votre appui durant tout le processus. Je ne vous lâche pas.</strong></p>
+            <div class="sign">
+              <div class="ph" data-ph=""></div>
+              <div><div class="name">Céline Thomelin</div><div class="role">Experte certifiée en ménopause</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME -->
+<section id="programme" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Un programme personnalisé</p>
+      <h2>Vitalité et <b>perte de poids durable</b></h2>
+      <p>Deux formules au choix, selon votre rythme et le niveau d'accompagnement dont vous avez besoin.</p>
+    </div>
+    <div class="formules rv">
+      <div class="formule">
+        <span class="tag">Formule 1</span>
+        <h3>Essentiel</h3>
+        <div class="dur">12 semaines · 100 % en ligne</div>
+        <ul>
+          <li><b>·</b> Bilan complet de votre situation hormonale et de votre hygiène de vie</li>
+          <li><b>·</b> Plan alimentaire adapté à la ménopause + menus et recettes</li>
+          <li><b>·</b> Programme de mouvement progressif à domicile</li>
+          <li><b>·</b> Suivi hebdomadaire par messagerie</li>
+          <li><b>·</b> Accès à l'espace membre et aux ressources</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Réserver</a>
+      </div>
+      <div class="formule hi">
+        <span class="tag">Formule 2 · la plus choisie</span>
+        <h3>Menoboost Intégral</h3>
+        <div class="dur">12 semaines · visio ou présentiel</div>
+        <ul>
+          <li><b>·</b> Tout le contenu de la formule Essentiel</li>
+          <li><b>·</b> Analyse biologique et complémentation ciblée</li>
+          <li><b>·</b> Séances individuelles de coaching mental et gestion du stress</li>
+          <li><b>·</b> Ajustements du plan toutes les 2 semaines</li>
+          <li><b>·</b> Suivi illimité et accompagnement post-programme</li>
+        </ul>
+        <a href="#contact" class="btn btn-terra">Réserver</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMPAGNEMENTS -->
+<section id="accomp" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Mes accompagnements</p>
+      <h2>Commencez par ce qui vous <b>ressemble</b>.</h2>
+    </div>
+    <div class="cards rv">
+      <div class="card">
+        <div class="ph" data-ph="Photo — appel visio"></div>
+        <div class="body">
+          <div class="sub">Offert</div>
+          <h4>Appel gratuit 30 min</h4>
+          <p>On fait le point ensemble sur votre situation et je vous dis honnêtement si je peux vous aider.</p>
+          <a href="#contact" class="btn btn-solid btn-sm">Réserver</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ph ph-sage" data-ph="Photo — analyse biologique"></div>
+        <div class="body">
+          <div class="sub">Bilan</div>
+          <h4>Analyse biologique</h4>
+          <p>Comprendre ce qui se passe réellement dans votre corps pour cibler la complémentation.</p>
+          <a href="#contact" class="btn btn-solid btn-sm">Réserver</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ph" data-ph="Photo — coaching en ligne"></div>
+        <div class="body">
+          <div class="sub">3 mois</div>
+          <h4>Menoboost en ligne</h4>
+          <p>Le programme complet : mouvement, alimentation, mental et complémentation.</p>
+          <a href="#contact" class="btn btn-solid btn-sm">Réserver</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ph ph-sage" data-ph="Photo — recettes & menus"></div>
+        <div class="body">
+          <div class="sub">Ressource</div>
+          <h4>Menus &amp; recettes</h4>
+          <p>Des repas adaptés à vos besoins, simples à préparer, pensés pour la ménopause.</p>
+          <a href="#contact" class="btn btn-solid btn-sm">Réserver</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMOIGNAGES -->
+<section id="temoignages" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Témoignages clientes</p>
+      <h2>Elles ont <b>repris la main</b>.</h2>
+    </div>
+    <div class="testis rv">
+      <div class="testi">
+        <div class="q">“</div>
+        <p>J'ai perdu 8 kg en 12 semaines, mais surtout j'ai retrouvé un sommeil que je n'avais plus depuis trois ans.</p>
+        <div class="who"><div class="ph av"></div><div><b>Sylvie, 54 ans</b><span>Programme 3 mois</span><div class="stars">★★★★★</div></div></div>
+      </div>
+      <div class="testi">
+        <div class="q">“</div>
+        <p>Enfin quelqu'un qui m'explique ce qui se passe dans mon corps, au lieu de me dire que c'est normal.</p>
+        <div class="who"><div class="ph av ph-sage"></div><div><b>Nathalie, 48 ans</b><span>Péri-ménopause</span><div class="stars">★★★★★</div></div></div>
+      </div>
+      <div class="testi">
+        <div class="q">“</div>
+        <p>Les bouffées de chaleur ont nettement diminué et je me sens à nouveau moi-même. Céline ne vous lâche pas.</p>
+        <div class="who"><div class="ph av"></div><div><b>Corinne, 51 ans</b><span>Formule intégrale</span><div class="stars">★★★★★</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="final rv">
+      <p class="eyebrow" style="color:rgba(255,255,255,.8)">Conseils et vitalité</p>
+      <h2>Et si cette étape devenait<br>votre <em>meilleure version</em> ?</h2>
+      <p>Réservez votre appel découverte de 30 minutes, gratuit et sans engagement. On regarde ensemble où vous en êtes et par quoi commencer.</p>
+      <a href="#" class="btn btn-cream">Réserver mon appel gratuit</a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div>
+    <span>Bien-être <i>◦</i> Vitalité <i>◦</i> Nutrition <i>◦</i> Sérénité <i>◦</i> Mouvement <i>◦</i> Sommeil <i>◦</i></span>
+    <span>Bien-être <i>◦</i> Vitalité <i>◦</i> Nutrition <i>◦</i> Sérénité <i>◦</i> Mouvement <i>◦</i> Sommeil <i>◦</i></span>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#" class="logo"><i></i>Menoboost</a>
+        <p style="margin-top:16px;max-width:34ch;font-size:15px">Ménopause &amp; vitalité. Un accompagnement complet pour les femmes de plus de 40 ans.</p>
+      </div>
+      <div><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#about">Qui suis-je ?</a></li><li><a href="#programme">Programmes</a></li><li><a href="#accomp">Accompagnements</a></li></ul></div>
+      <div><h5>Ressources</h5><ul><li><a href="#temoignages">Témoignages</a></li><li><a href="#">Conseils &amp; vitalité</a></li><li><a href="#">Menus &amp; recettes</a></li><li><a href="#">Se connecter</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="#">Réserver un appel</a></li><li><a href="#">contact@menoboost.fr</a></li><li>En visio ou en présentiel</li></ul></div>
+    </div>
+    <div class="f-bot">
+      <span>© 2026 MENOBOOST — Ménopause Vitalité. Tous droits réservés.</span>
+      <span>Mentions légales · CGV · Politique de confidentialité</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MENOBOOST — Ménopause &amp; Vitalité</title>
+<link rel="icon" href="images/logo-menoboost.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ----- palette relevee sur les visuels de marque Nenoboost ----- */
+  --navy:#003358;          /* bleu marine du logo */
+  --navy-2:#0A4A76;
+  --navy-900:#00263F;
+  --green:#7EA266;         /* vert feuille du logo (aplats) */
+  --green-dp:#4C7539;      /* vert fonce : texte et boutons sur fond clair */
+  --green-lt:#A8C494;      /* vert clair : accents sur fond marine */
+  --mint:#E9F0E5;          /* fond de page */
+  --mint-2:#DBE6D4;
+  --ink:#16262F;
+  --muted:#566A75;
+  --line:rgba(0,51,88,.14);
+  --e:cubic-bezier(.19,1,.22,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--mint);color:var(--ink);font-family:"Instrument Sans",sans-serif;font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;line-height:.98;letter-spacing:-.035em}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(1320px,94vw);margin-inline:auto}
+.serif{color:var(--green-dp)}
+
+svg.i{width:1em;height:1em;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+svg.i.fill{fill:currentColor;stroke:none}
+.ic-sm{width:16px;height:16px;margin-top:4px;flex:0 0 16px}
+
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--green-dp);background:rgba(126,162,102,.2);padding:8px 15px;border-radius:999px}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green-dp);box-shadow:0 0 0 3px rgba(126,162,102,.3)}
+
+.ph{position:relative;overflow:hidden;background:var(--mint-2)}
+.ph img{width:100%;height:100%;object-fit:cover}
+/* visuels de type infographie : jamais recadres */
+.figure{background:#fff;border:1px solid var(--line);border-radius:26px;padding:18px;overflow:hidden}
+.figure img{width:100%;height:auto;border-radius:14px}
+
+/* NAV */
+header{position:fixed;top:18px;left:0;right:0;z-index:200}
+.nav{background:rgba(233,240,229,.85);backdrop-filter:blur(18px) saturate(1.3);border:1px solid var(--line);border-radius:999px;display:flex;align-items:center;gap:30px;padding:9px 9px 9px 22px;box-shadow:0 18px 40px -28px rgba(0,51,88,.5)}
+.logo img{height:40px;width:auto}
+.logo.sm img{height:34px}
+nav.links{display:flex;gap:24px;margin-left:auto;font-size:14px;font-weight:500;color:var(--muted)}
+nav.links a{padding:6px 2px;transition:color .3s}
+nav.links a:hover{color:var(--navy)}
+.nav-end{display:flex;align-items:center;gap:14px;font-size:13.5px;color:var(--muted)}
+.cart{display:flex;align-items:center;gap:6px}
+.cart svg.i{width:17px;height:17px}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;font-weight:600;transition:transform .4s var(--e),background .3s,box-shadow .4s var(--e),border-color .3s;padding:15px 28px;font-size:14.5px}
+.btn:hover{transform:translateY(-2px)}
+.btn svg.i{width:16px;height:16px}
+.btn-dark{background:var(--navy);color:#fff;box-shadow:0 12px 28px -16px rgba(0,51,88,.9)}
+.btn-dark:hover{background:var(--navy-2)}
+.btn-green{background:var(--green-dp);color:#fff}
+.btn-green:hover{background:#5F8A4C;box-shadow:0 14px 32px -16px rgba(76,117,57,.8)}
+.btn-sage{background:var(--green-lt);color:var(--navy)}
+.btn-sage:hover{background:#BDD4AB;box-shadow:0 14px 32px -16px rgba(168,196,148,.9)}
+.btn-out{border:1.5px solid var(--line);color:var(--ink)}
+.btn-out:hover{border-color:var(--navy)}
+.btn-sm{padding:11px 20px;font-size:13.5px}
+.round{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.1);display:grid;place-items:center}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;isolation:isolate}
+.hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0;background:var(--mint-2)}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scaleX(-1)}
+.hero-l{background:rgba(0,51,88,.8);backdrop-filter:blur(30px) saturate(1.25);-webkit-backdrop-filter:blur(30px) saturate(1.25);border-right:1px solid rgba(255,255,255,.16);color:#fff;padding:150px 60px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;z-index:2}
+.hero-l::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;left:-300px;bottom:-320px;background:radial-gradient(circle,rgba(168,196,148,.2),transparent 65%)}
+.hero-l>*{position:relative}
+.hero-l .tag{background:rgba(168,196,148,.2);color:var(--green-lt)}
+.hero-l .tag::before{background:var(--green-lt);box-shadow:0 0 0 3px rgba(168,196,148,.25)}
+.hero h1{font-size:clamp(42px,4.6vw,76px);margin-top:26px;font-weight:600;letter-spacing:-.04em}
+.hero h1 .green{color:var(--green-lt)}
+
+.hero-l p{margin-top:24px;max-width:46ch;color:rgba(255,255,255,.76);font-size:16.5px}
+.hero-cta{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.hero-r{position:relative;overflow:hidden;z-index:1}
+.hero-r .ph{position:absolute;inset:0}
+.hero-r .ph img{object-position:50% 12%}
+.hero-over{position:absolute;left:4%;top:30%;font-family:"Bricolage Grotesque";font-size:clamp(52px,6.6vw,110px);font-weight:700;letter-spacing:-.05em;color:#fff;line-height:.9;z-index:3;pointer-events:none}
+.hero-badges{position:absolute;right:26px;bottom:26px;display:grid;gap:10px;z-index:4}
+.bdg{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:14px;min-width:220px}
+.bdg .n{font-family:"Bricolage Grotesque";font-size:26px;font-weight:700;letter-spacing:-.04em;color:var(--navy)}
+.bdg .l{font-size:12px;color:var(--muted);line-height:1.3}
+.scroll-hint{position:absolute;left:60px;bottom:38px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);z-index:5;display:flex;align-items:center;gap:10px}
+.scroll-hint::after{content:"";width:40px;height:1px;background:rgba(255,255,255,.45);animation:grow 2s var(--e) infinite}
+@keyframes grow{0%,100%{width:20px;opacity:.4}50%{width:52px;opacity:1}}
+
+section{padding:118px 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.sec-head h2{font-size:clamp(34px,4.4vw,62px);margin-top:18px;color:var(--navy)}
+.sec-head h2 .serif{color:var(--green-dp)}
+.sec-head p{color:var(--muted);max-width:52ch}
+.rv{opacity:0;transform:translateY(30px);transition:opacity 1s var(--e),transform 1s var(--e)}
+.rv.in{opacity:1;transform:none}
+
+/* BENTO */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(200px,1fr);gap:14px;margin-top:56px}
+.bx{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px 26px;display:flex;flex-direction:column;align-items:flex-start;position:relative;overflow:hidden;transition:transform .5s var(--e),box-shadow .5s var(--e),border-color .5s var(--e)}
+.bx::after{content:"";position:absolute;right:-70px;bottom:-90px;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,rgba(126,162,102,.2),transparent 70%);opacity:0;transition:opacity .5s var(--e)}
+.bx:hover::after{opacity:1}
+.bx>*{position:relative;z-index:1}
+.bx:hover{transform:translateY(-6px);box-shadow:0 30px 56px -34px rgba(0,51,88,.4);border-color:rgba(126,162,102,.55)}
+.bx .ic{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:rgba(126,162,102,.18);color:var(--green-dp);transition:background .45s var(--e),color .45s var(--e)}
+.bx:hover .ic{background:var(--green-dp);color:#fff}
+.bx .ic svg.i{width:23px;height:23px}
+.bx h4{font-size:20px;margin-top:20px;margin-bottom:18px;font-weight:600;letter-spacing:-.03em;color:var(--navy);line-height:1.12}
+.bx p{font-size:14.5px;color:var(--muted);margin-top:auto;padding-top:16px;width:100%;border-top:1px solid var(--line)}
+.bx.span2{grid-column:span 2}
+.bx.dark{background:var(--navy);border-color:transparent}
+.bx.dark h4{color:#fff}
+.bx.dark p{color:rgba(255,255,255,.74);border-top-color:rgba(255,255,255,.2)}
+.bx.dark .ic{background:rgba(168,196,148,.22);color:var(--green-lt)}
+.bx.dark:hover .ic{background:var(--green-lt);color:var(--navy)}
+.bx.dark:hover{border-color:rgba(168,196,148,.5)}
+.bx.green{background:var(--green);border-color:transparent}
+.bx.green h4{color:var(--navy)}
+.bx.green p{color:rgba(0,38,63,.78);border-top-color:rgba(0,38,63,.2)}
+.bx.green .ic{background:rgba(255,255,255,.45);color:var(--navy)}
+.bx.green:hover .ic{background:var(--navy);color:#fff}
+.bx.photo{padding:0;overflow:hidden;position:relative;min-height:170px}
+.bx.photo .ph{position:absolute;inset:0}
+
+/* AVANT / APRES */
+.split{display:grid;grid-template-columns:1fr 1fr;border-radius:34px;overflow:hidden;margin-top:56px;border:1px solid var(--line)}
+.sp{padding:46px 42px;background:#fff}
+.sp.after{background:var(--navy);color:#fff}
+.sp h3{font-size:13px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.sp.after h3{color:var(--green-lt)}
+.sp .headline{font-family:"Bricolage Grotesque";font-size:32px;margin-top:14px;letter-spacing:-.04em;font-weight:600;color:var(--navy)}
+.sp.after .headline{color:#fff}
+.sp ul{list-style:none;margin-top:28px}
+.sp li{padding:16px 0;border-bottom:1px dashed var(--line);display:flex;gap:14px;align-items:baseline;font-size:16px}
+.sp.after li{border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.9)}
+.sp li i{font-style:normal;font-size:11px;letter-spacing:.1em;color:var(--muted);font-weight:700;min-width:22px}
+.sp.after li i{color:var(--green-lt)}
+
+/* PILIERS */
+.piliers{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pil{border-radius:24px;padding:30px 26px 28px;background:var(--mint-2);position:relative;display:flex;flex-direction:column;min-height:270px;transition:background .45s var(--e),transform .45s var(--e)}
+.pil:hover{background:var(--navy);transform:translateY(-6px)}
+.pil:hover h4{color:#fff}
+.pil:hover p{color:rgba(255,255,255,.74);border-top-color:rgba(255,255,255,.2)}
+.pil:hover .n{color:var(--green-lt);background:rgba(168,196,148,.22)}
+.pil:hover .ic{background:rgba(168,196,148,.22);color:var(--green-lt)}
+.pil .ic{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;background:rgba(0,51,88,.08);color:var(--navy);transition:all .45s var(--e)}
+.pil .ic svg.i{width:24px;height:24px}
+.pil .n{position:absolute;top:30px;right:26px;font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--green-dp);background:rgba(126,162,102,.2);padding:6px 12px;border-radius:999px;line-height:1;transition:all .45s}
+.pil h4{font-size:22px;margin-top:22px;margin-bottom:18px;font-weight:600;color:var(--navy);transition:color .45s}
+.pil p{font-size:14.5px;color:var(--muted);margin-top:auto;padding-top:16px;border-top:1px solid rgba(0,51,88,.12);transition:color .45s,border-color .45s}
+
+.result{margin-top:16px;display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.result .box{background:var(--green);border-radius:28px;padding:40px 42px;display:flex;gap:34px;align-items:center;flex-wrap:wrap}
+.result .kpi{font-family:"Bricolage Grotesque";font-size:86px;line-height:.85;font-weight:700;letter-spacing:-.06em;color:var(--navy)}
+.result .kpi small{font-size:26px;font-weight:500}
+.result .box p{flex:1;min-width:260px;color:rgba(0,38,63,.88);font-size:16.5px}
+.result .ph{border-radius:28px;min-height:190px}
+
+/* PARCOURS */
+.parcours{display:grid;grid-template-columns:400px 1fr;gap:40px;align-items:start;margin-top:56px}
+.parcours .figure{position:sticky;top:120px}
+.steps{display:grid;gap:14px}
+.step{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px 30px;display:grid;grid-template-columns:58px 1fr;gap:22px;align-items:start;transition:transform .45s var(--e),box-shadow .45s var(--e)}
+.step:hover{transform:translateX(6px);box-shadow:0 24px 46px -30px rgba(0,51,88,.45)}
+.step .num{width:58px;height:58px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:"Bricolage Grotesque";font-size:20px;font-weight:700}
+.step:nth-child(4) .num{background:var(--green-dp)}
+.step h4{font-size:24px;color:var(--navy);font-weight:600}
+.step ul{list-style:none;margin-top:12px;display:grid;gap:8px}
+.step li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;color:var(--muted)}
+.step li svg.i{color:var(--green-dp)}
+.step .note{margin-top:14px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--green-dp);background:rgba(126,162,102,.16);padding:7px 14px;border-radius:999px}
+.step .note svg.i{width:15px;height:15px}
+
+/* FORMULES */
+.formules{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:52px}
+.fm{border-radius:30px;padding:42px 38px;background:#fff;border:1px solid var(--line);transition:transform .5s var(--e),box-shadow .5s var(--e)}
+.fm:hover{transform:translateY(-8px);box-shadow:0 40px 70px -40px rgba(0,51,88,.45)}
+.fm h3{font-size:34px;margin:18px 0 6px;font-weight:600;color:var(--navy)}
+.fm .dur{font-size:14px;color:var(--muted)}
+.fm .grp{margin-top:24px}
+.fm .grp h5{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--green-dp);margin-bottom:8px}
+.fm ul{list-style:none;display:grid;gap:8px}
+.fm li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;color:var(--muted)}
+.fm li svg.i{color:var(--green-dp)}
+.fm .btn{margin-top:30px}
+.fm.hi{background:var(--navy);border-color:transparent}
+.fm.hi h3{color:#fff}
+.fm.hi .dur,.fm.hi li{color:rgba(255,255,255,.8)}
+.fm.hi .grp h5{color:var(--green-lt)}
+.fm.hi li svg.i{color:var(--green-lt)}
+.fm.hi .tag{background:rgba(168,196,148,.2);color:var(--green-lt)}
+.fm.hi .tag::before{background:var(--green-lt)}
+.offert{margin-top:16px;background:var(--green);border-radius:26px;padding:30px 36px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.offert .lab{font-family:"Bricolage Grotesque";font-size:30px;font-weight:700;letter-spacing:-.04em;color:var(--navy)}
+.offert ul{list-style:none;display:flex;gap:26px;flex-wrap:wrap}
+.offert li{display:flex;gap:10px;align-items:center;color:var(--navy);font-weight:600}
+.offert li svg.i{width:19px;height:19px}
+
+/* ACCOMPAGNEMENTS */
+.rows{margin-top:52px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:96px 1.1fr 1.4fr 150px 170px;gap:26px;align-items:center;padding:20px 14px;border-bottom:1px solid var(--line);border-radius:22px;transition:background .4s var(--e),padding .4s var(--e),box-shadow .4s var(--e)}
+.row:hover{background:#fff;padding-left:24px;padding-right:24px;box-shadow:0 24px 46px -34px rgba(0,51,88,.4);border-bottom-color:transparent}
+.row .ph{width:96px;height:96px;border-radius:20px}
+.row h4{font-size:24px;font-weight:600;letter-spacing:-.03em;color:var(--navy)}
+.row .d{font-size:14.5px;color:var(--muted)}
+.row .meta{display:inline-flex;align-items:center;margin-top:8px;padding:5px 12px;border-radius:999px;background:rgba(126,162,102,.18);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green-dp);font-weight:700}
+.row .btn{justify-content:center}
+
+/* TEMOIGNAGES */
+.tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.tc{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px 30px;display:flex;flex-direction:column;transition:transform .5s var(--e),box-shadow .5s var(--e),border-color .5s var(--e)}
+.tc:hover{transform:translateY(-6px);box-shadow:0 30px 56px -36px rgba(0,51,88,.4);border-color:rgba(126,162,102,.5)}
+.tc-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.tc .qm{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(126,162,102,.18);color:var(--green-dp)}
+.tc .qm svg.i{width:22px;height:22px}
+.stars{display:flex;gap:3px;color:var(--green-dp);background:rgba(126,162,102,.14);padding:7px 11px;border-radius:999px}
+.stars svg.i{width:15px;height:15px}
+.tc p{margin-top:20px;font-size:17.5px;line-height:1.55;flex:1;color:var(--ink);font-weight:500}
+.tc .who{display:flex;align-items:center;gap:12px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+.tc .av{width:48px;height:48px;border-radius:50%;flex:0 0 48px;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(126,162,102,.45)}
+.tc b{font-size:15.5px;display:block;color:var(--navy)}
+.tc span{font-size:12.5px;color:var(--muted)}
+
+/* CTA */
+.cta{background:var(--navy);border-radius:40px;padding:90px 60px;color:#fff;position:relative;overflow:hidden;text-align:center}
+.cta::before{content:"";position:absolute;width:800px;height:800px;border-radius:50%;left:50%;translate:-50% 0;top:-500px;background:radial-gradient(circle,rgba(168,196,148,.22),transparent 62%)}
+.cta>*{position:relative}
+.cta h2{font-size:clamp(36px,5.2vw,74px);font-weight:600;letter-spacing:-.045em}
+.cta h2 .green{color:var(--green-lt)}
+.cta p{max-width:52ch;margin:22px auto 0;color:rgba(255,255,255,.76)}
+.cta-actions{margin-top:34px;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cta .tel{display:inline-flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque";font-size:22px;font-weight:600;letter-spacing:-.02em;color:#fff}
+.cta .tel svg.i{width:19px;height:19px;color:var(--green-lt)}
+
+/* FOOTER */
+footer{padding:80px 0 34px;border-top:1px solid var(--line);margin-top:118px}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+footer h5{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-dp);font-weight:700;margin-bottom:16px}
+footer ul{list-style:none;display:grid;gap:10px;font-size:15px;color:var(--muted)}
+footer a:hover{color:var(--navy)}
+.f-words{margin-top:60px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;font-family:"Bricolage Grotesque";font-size:clamp(28px,5vw,58px);font-weight:600;letter-spacing:-.05em;color:var(--green-dp)}
+.f-words b{font-weight:600;color:var(--navy)}
+.f-words svg.i{width:.3em;height:.3em;color:var(--green-dp)}
+.f-bot{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+
+@media(max-width:1060px){
+  .hero{grid-template-columns:1fr}
+  .hero-r{min-height:56vh}
+  .hero-bg img{object-position:50% 4%}
+  .hero-l{background:rgba(0,51,88,.88);border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}
+  .hero-over{left:6%;top:auto;bottom:16%}
+  .hero-l{padding:130px 28px 60px}
+  .scroll-hint{display:none}
+  .bento,.piliers{grid-template-columns:1fr 1fr}
+  .split,.about,.formules,.result,.sec-head,.parcours{grid-template-columns:1fr}
+  .about-media,.parcours .figure{position:static}
+  .tcards{grid-template-columns:1fr}
+  .row{grid-template-columns:72px 1fr;gap:18px}
+  .row .ph{width:72px;height:72px;border-radius:18px}
+  .row .d,.row .meta{display:none}
+  .row .btn{grid-column:2}
+  nav.links{display:none}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .cta{padding:60px 24px;border-radius:28px}
+}
+@media(max-width:620px){
+  .nav-end>a:first-child{display:none}
+  .bento,.piliers{grid-template-columns:1fr}.bx.span2{grid-column:span 1}
+  section{padding:78px 0}
+  .step{grid-template-columns:1fr}
+  .offert{padding:24px}
+}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.about-media{position:sticky;top:120px}
+.about-media .ph{border-radius:28px;aspect-ratio:1/1}
+.about-media .quote{margin-top:14px;background:var(--navy);color:#fff;border-radius:22px;padding:24px 26px}
+.about-media .quote p{font-family:"Bricolage Grotesque",sans-serif;font-size:21px;font-weight:600;line-height:1.28;letter-spacing:-.02em}
+.about-media .quote span{display:block;margin-top:12px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-lt);font-family:"Instrument Sans";font-weight:600}
+.about h2{font-size:clamp(30px,3.6vw,50px);letter-spacing:-.04em;color:var(--navy)}
+.about h2 .serif{color:var(--green-dp)}
+.about .block{margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+.about .block h3{font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--green-dp);margin-bottom:16px}
+.about .block p{color:var(--muted);margin-bottom:14px}
+.about .block p strong{color:var(--ink);font-weight:600}
+.mission{list-style:none;display:grid;gap:10px;margin-top:22px}
+.mission li{display:flex;gap:10px;align-items:flex-start;color:var(--muted)}
+.mission li svg.i{color:var(--green-dp)}
+.signature{display:flex;align-items:center;gap:16px;margin-top:34px;padding:20px 24px;background:var(--mint-2);border-radius:20px}
+.signature .ph{width:56px;height:56px;border-radius:50%;flex:0 0 56px}
+.signature .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:23px;letter-spacing:-.03em;color:var(--navy)}
+.signature .r{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+  <symbol id="i-sunrise" viewBox="0 0 24 24"><path d="M12 2v6"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m8 6 4-4 4 4"/><path d="M16 18a4 4 0 0 0-8 0"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-thermometer" viewBox="0 0 24 24"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14Z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></symbol>
+  <symbol id="i-salad" viewBox="0 0 24 24"><path d="M7 21h10"/><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M11.38 12a2.4 2.4 0 0 1-.4-4.77 2.4 2.4 0 0 1 3.2-2.77 2.4 2.4 0 0 1 3.47-.63 2.4 2.4 0 0 1 3.37 3.37 2.4 2.4 0 0 1-1.1 3.7"/><path d="M13 12a2 2 0 0 0-4 0"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M11.55 2.6a.5.5 0 0 1 .9 0l2.5 5.07 5.6.81a.5.5 0 0 1 .28.86l-4.05 3.95.96 5.57a.5.5 0 0 1-.73.53L12 16.76l-5.01 2.63a.5.5 0 0 1-.73-.53l.96-5.57-4.05-3.95a.5.5 0 0 1 .28-.86l5.6-.81Z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M10 4H5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h3v1a3 3 0 0 1-3 3v2a5 5 0 0 0 5-5V5a1 1 0 0 0-1-1Zm9 0h-5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h3v1a3 3 0 0 1-3 3v2a5 5 0 0 0 5-5V5a1 1 0 0 0-1-1Z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.83 19a15 15 0 0 1-8.83-8.83l1.64-1.63a2 2 0 0 0 .5-2L6.3 4.3a2 2 0 0 0-2-1.3H3a2 2 0 0 0-2 2.2 18 18 0 0 0 16 16 2 2 0 0 0 2.2-2v-1.3a2 2 0 0 0-1.3-2l-2.25-.83a2 2 0 0 0-2 .5Z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+  <symbol id="i-scale-2" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="3"/><path d="M8 13h8"/><path d="M12 8v5"/></symbol>
+  <symbol id="i-watch" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><path d="M12 10v2l1.5 1"/><path d="M9 2h6l.5 4"/><path d="M9 22h6l.5-4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 2v6.2a2 2 0 0 1-.3 1L4 17.5A2.5 2.5 0 0 0 6.1 21h11.8a2.5 2.5 0 0 0 2.1-3.5l-4.7-8.3a2 2 0 0 1-.3-1V2"/><path d="M8 2h8"/><path d="M6.6 15h10.8"/></symbol>
+  <symbol id="i-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.9-3.9a2 2 0 0 1 0-2.8l.8-.8a2 2 0 0 1 2.8 0L21 8"/><path d="M3 8l2.8-2.8a2 2 0 0 1 2.8 0l3.9 3.9a1 1 0 0 1 0 1.4l-1.6 1.6a1 1 0 0 1-1.4 0L7 9.6"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo"><img src="images/logo-menoboost.png" alt="Ménoboost — Health &amp; Sport"></a>
+    <nav class="links">
+      <a href="#">Accueil</a><a href="#about">Qui suis-je ?</a><a href="#programme">Programmes</a>
+      <a href="#accomp">Accompagnements</a><a href="#temoignages">Témoignages</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-end">
+      <a href="#">Se connecter</a>
+      <span class="cart"><svg class="i"><use href="#i-bag"/></svg>0</span>
+      <a href="#contact" class="btn btn-dark btn-sm">Contacter</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg" aria-hidden="true"><img src="images/hero.avif" alt=""></div>
+  <div class="hero-l">
+    <span class="tag">Péri-ménopause &amp; ménopause · +40 ans</span>
+    <h1>Vivez votre<br>ménopause<br>avec <span class="green">énergie</span></h1>
+    <p>Retrouvez votre vitalité avec un accompagnement personnalisé, adapté à chacune. Je vous guide vers une ménopause sereine : réconciliez-vous avec votre corps, bougez différemment, retrouvez un sommeil apaisé, équilibrez votre microbiote — sans subir les effets indésirables.</p>
+    <div class="hero-cta">
+      <a href="#accomp" class="btn btn-sage">Réserver <span class="round" style="background:rgba(0,51,88,.12)"><svg class="i"><use href="#i-arrow-right"/></svg></span></a>
+      <a href="#programme" class="btn btn-out" style="border-color:rgba(255,255,255,.28);color:#fff">Découvrir</a>
+    </div>
+    <div class="scroll-hint">Faites défiler</div>
+  </div>
+  <div class="hero-r">
+    <div class="ph"><img src="images/hero.avif" alt="Femme épanouie à la ménopause" fetchpriority="high"></div>
+    <div class="hero-over">ÉNERGIE</div>
+    <div class="hero-badges">
+      <div class="bdg"><div class="n">-8 kg</div><div class="l">en 12 semaines,<br>durablement</div></div>
+      <div class="bdg"><div class="n">500+</div><div class="l">femmes accompagnées<br>depuis 2 ans</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="tag">Une expertise au service de votre bien-être</span>
+        <h2>La ménopause ne doit pas rimer avec fatigue, prise de poids et <span class="serif">perte de contrôle.</span></h2>
+      </div>
+      <p>Si vous vous sentez épuisée, si votre sommeil est perturbé, si votre corps change sans que vous compreniez pourquoi… ce n'est pas une fatalité. Accompagnement en distanciel (visio) ou en présentiel.</p>
+    </div>
+
+    <div class="bento rv">
+      <div class="bx"><div class="ic"><svg class="i"><use href="#i-scale"/></svg></div><h4>Prise de poids</h4><p>Vous prenez du poids sans raison apparente.</p></div>
+      <div class="bx"><div class="ic"><svg class="i"><use href="#i-sunrise"/></svg></div><h4>Fatigue matinale</h4><p>Vous êtes fatiguée dès le réveil.</p></div>
+      <div class="bx dark span2"><div class="ic"><svg class="i"><use href="#i-moon"/></svg></div><h4>Des nuits hachées ou trop courtes</h4><p>Le sommeil se fragmente, la récupération ne se fait plus, et tout le reste s'en ressent : humeur, appétit, motivation.</p></div>
+      <div class="bx photo"><div class="ph"><img src="images/serre.avif" alt="Femme dans une serre" loading="lazy"></div></div>
+      <div class="bx"><div class="ic"><svg class="i"><use href="#i-thermometer"/></svg></div><h4>Bouffées de chaleur</h4><p>Le jour comme la nuit.</p></div>
+      <div class="bx"><div class="ic"><svg class="i"><use href="#i-zap"/></svg></div><h4>Manque d'énergie</h4><p>Au quotidien, tout demande plus d'effort.</p></div>
+      <div class="bx green"><div class="ic"><svg class="i"><use href="#i-heart"/></svg></div><h4>Émotions plus fortes</h4><p>Parfois difficiles à digérer.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVANT / APRES -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="split rv">
+      <div class="sp">
+        <h3>Avant</h3>
+        <div class="headline">Là où vous en êtes<br>aujourd'hui.</div>
+        <ul>
+          <li><i>01</i>Vous prenez du poids sans raison</li>
+          <li><i>02</i>Vous êtes fatiguée dès le réveil</li>
+          <li><i>03</i>Vos nuits sont hachées ou trop courtes</li>
+          <li><i>04</i>Vous avez des bouffées de chaleur</li>
+          <li><i>05</i>Vous manquez d'énergie au quotidien</li>
+          <li><i>06</i>Vos émotions sont plus fortes</li>
+        </ul>
+      </div>
+      <div class="sp after">
+        <h3>Après</h3>
+        <div class="headline">Là où nous allons,<br>en 12 semaines.</div>
+        <ul>
+          <li><i>01</i>Plus d'énergie au quotidien</li>
+          <li><i>02</i>Un sommeil plus profond</li>
+          <li><i>03</i>Un corps plus tonique</li>
+          <li><i>04</i>Moins de fluctuations émotionnelles</li>
+          <li><i>05</i>Une meilleure compréhension de votre corps</li>
+          <li><i>06</i>Des repas adaptés à vos besoins</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILIERS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="tag">La méthode</span>
+        <h2>Reprendre la main,<br><span class="serif">étape par étape.</span></h2>
+      </div>
+      <p>Quatre piliers travaillés ensemble — parce qu'aucun ne fonctionne durablement seul.</p>
+    </div>
+    <div class="piliers rv">
+      <div class="pil"><div class="ic"><svg class="i"><use href="#i-activity"/></svg></div><div class="n">01</div><h4>Le mouvement</h4><p>Bouger autrement pour préserver muscle et densité osseuse, sans s'épuiser.</p></div>
+      <div class="pil"><div class="ic"><svg class="i"><use href="#i-salad"/></svg></div><div class="n">02</div><h4>L'alimentation</h4><p>Des repas adaptés à vos besoins hormonaux et à votre microbiote.</p></div>
+      <div class="pil"><div class="ic"><svg class="i"><use href="#i-brain"/></svg></div><div class="n">03</div><h4>Le stress<br>&amp; les émotions</h4><p>Identifier les blocages inconscients et apaiser durablement.</p></div>
+      <div class="pil"><div class="ic"><svg class="i"><use href="#i-pill"/></svg></div><div class="n">04</div><h4>La complémentation</h4><p>Ciblée, adaptée à votre biologie — jamais standardisée.</p></div>
+    </div>
+    <div class="result rv">
+      <div class="box">
+        <div class="kpi">8<small> kg</small></div>
+        <p><strong>en 12 semaines.</strong> Perdre les kilos que vous jugez en trop et stabiliser votre poids de manière durable, mieux dormir et vous sentir à nouveau vous-même.</p>
+      </div>
+      <div class="ph"><img src="images/pierres.jpg" alt="Pierres lisses empilées en équilibre" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUI SUIS-JE -->
+<section id="about" style="padding-top:0">
+  <div class="wrap about rv">
+    <div class="about-media">
+      <div class="ph"><img src="images/celine.avif" alt="Céline Thomelin, experte certifiée en ménopause" loading="lazy"></div>
+      <div class="quote">
+        <p>“La ménopause n'est pas une fin, c'est une transition. Je vous accompagne pour la voir comme une renaissance.”</p>
+        <span>Céline Thomelin</span>
+      </div>
+    </div>
+    <div>
+      <span class="tag">Qui suis-je ?</span>
+      <h2 style="margin-top:20px">Coach sportive, nutrition &amp; mental — <span class="serif">experte certifiée en ménopause.</span></h2>
+
+      <div class="block">
+        <h3>Ma mission</h3>
+        <p>Accompagner les femmes de plus de 40 ans à mieux vivre leur péri-ménopause ou ménopause, pour les aider à :</p>
+        <ul class="mission">
+          <li><svg class="i ic-sm"><use href="#i-chevron-right"/></svg>Comprendre ce qui se passe dans leur corps</li>
+          <li><svg class="i ic-sm"><use href="#i-chevron-right"/></svg>Réduire les symptômes</li>
+          <li><svg class="i ic-sm"><use href="#i-chevron-right"/></svg>Retrouver l'énergie et l'équilibre</li>
+          <li><svg class="i ic-sm"><use href="#i-chevron-right"/></svg>Se sentir bien dans leur corps et dans leur tête</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Mon parcours</h3>
+        <p>Coach sportive depuis mes 18 ans, j'ai toujours vu le sport comme un outil pour <strong>bien vieillir</strong>, pas seulement pour changer son apparence.</p>
+        <p>Très tôt, j'ai été marquée par ce que vivait ma mère : les régimes à répétition, les effets yo-yo, la frustration. J'ai compris que ce modèle ne fonctionnait pas sur le long terme et qu'il créait surtout beaucoup de souffrance. C'est ce qui m'a poussée à chercher une autre approche.</p>
+        <p>Au départ, j'accompagnais par le sport. Mais j'ai vite constaté une limite : perdre du poids ne suffit pas si l'alimentation n'est pas adaptée. Je me suis donc formée en <strong>nutrition sportive</strong>.</p>
+        <p>Puis j'ai observé autre chose. Même avec le sport et une bonne alimentation, certains blocages restaient : peurs, habitudes familiales, rapport à la nourriture, émotions mal gérées — souvent de façon inconsciente. J'ai alors intégré un troisième pilier, <strong>le mental</strong>, en me formant au développement personnel et à la gestion du stress auprès de l'ICI (Institut de Coaching International).</p>
+        <p>Avec ces trois axes, j'ai accompagné des milliers de personnes — femmes, hommes, adolescents — à transformer durablement leur mode de vie.</p>
+      </div>
+
+      <div class="block">
+        <h3>Pourquoi la ménopause ?</h3>
+        <p>En arrivant moi-même à la ménopause, j'ai été confrontée à ses effets : fatigue, prise de poids (+5 kg). Ce changement, je ne le comprenais pas — je n'avais rien changé et j'avais une bonne hygiène de vie.</p>
+        <p>Je me suis rendu compte que beaucoup de femmes vivent cela <strong>sans repères, sans accompagnement, souvent dans le silence et la solitude</strong>. J'ai donc décidé de me spécialiser : formée auprès d'une nutrithérapeute reconnue, j'ai obtenu une <strong>certification d'Experte en Ménopause</strong>.</p>
+        <p>Ce programme, mis en place depuis plus de 2 ans, a aidé des centaines de femmes à retrouver confiance et estime d'elles-mêmes, à diminuer les symptômes et à perdre du poids durablement. Chaque organisme est différent, plus ou moins lent, mais elles ont perdu entre <strong>7 et 8 kg en 12 semaines</strong>.</p>
+        <p><strong>Maintenant, c'est à vous d'y aller ! Je serai votre soutien et votre appui durant tout le processus — je ne vous lâche pas.</strong></p>
+      </div>
+
+      <div class="signature">
+        <div class="ph"><img src="images/celine-avatar.jpg" alt="" loading="lazy"></div>
+        <div><div class="n">Céline Thomelin</div><div class="r">Experte certifiée en ménopause</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section id="programme" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="tag">Un programme personnalisé</span>
+        <h2>Vitalité et <span class="serif">perte de poids durable</span></h2>
+      </div>
+      <p>Votre parcours se déroule en quatre étapes, du premier appel jusqu'au programme sur mesure.</p>
+    </div>
+
+    <div class="parcours rv">
+      <div class="figure">
+        <img src="images/parcours.avif" alt="Le parcours Ménoboost : découverte, analyse, première consultation, programme personnalisé" loading="lazy">
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num"><svg class="i" style="width:24px;height:24px"><use href="#i-search"/></svg></div>
+          <div>
+            <h4>Découverte</h4>
+            <ul>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>J'observe votre situation</li>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>Vous posez toutes vos questions</li>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>Je m'assure que je peux vous aider</li>
+            </ul>
+            <span class="note"><svg class="i"><use href="#i-phone"/></svg>Premier appel offert</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num"><svg class="i" style="width:24px;height:24px"><use href="#i-flask"/></svg></div>
+          <div>
+            <h4>Analyse</h4>
+            <ul>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>Envoi des marqueurs pour votre prise de sang</li>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>Envoi du dossier questionnaire santé</li>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>Envoi du journal alimentaire à compléter</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num"><svg class="i" style="width:24px;height:24px"><use href="#i-heart"/></svg></div>
+          <div>
+            <h4>Première consultation</h4>
+            <ul>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>Retour sur vos résultats et sur les dysfonctionnements observés</li>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>Préconisations et conseils personnalisés</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num"><svg class="i" style="width:24px;height:24px"><use href="#i-handshake"/></svg></div>
+          <div>
+            <h4>Programme personnalisé</h4>
+            <ul>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>Programme en présentiel</li>
+              <li><svg class="i ic-sm"><use href="#i-check"/></svg>ou programme en ligne</li>
+            </ul>
+            <span class="note"><svg class="i"><use href="#i-calendar"/></svg>12 semaines d'accompagnement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULES -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="tag">Deux formules au choix</span><h2>Présentiel ou <span class="serif">en ligne.</span></h2></div>
+      <p>Même méthode, même durée : 12 semaines. Seul le mode d'accompagnement change.</p>
+    </div>
+    <div class="formules rv">
+      <div class="fm">
+        <span class="tag">Formule 1</span>
+        <h3>Présentiel</h3><div class="dur">12 semaines · en cabinet</div>
+        <div class="grp"><h5>Suivi</h5><ul><li><svg class="i ic-sm"><use href="#i-check"/></svg>Échange global tout au long du parcours</li></ul></div>
+        <div class="grp"><h5>Sport</h5><ul>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>12 séances de sport en présentiel</li>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>1 pesée par semaine avec analyse</li></ul></div>
+        <div class="grp"><h5>Alimentation</h5><ul>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>Envoi des menus et recettes associées pour les 12 semaines, tous les vendredis</li></ul></div>
+        <div class="grp"><h5>Gestion du stress et sommeil</h5><ul>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>1 exercice de gestion des émotions et du stress à faire tous les jours</li></ul></div>
+        <div class="grp"><h5>Compléments alimentaires</h5><ul>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>Les compléments nécessaires à vos besoins sont compris</li></ul></div>
+        <a href="#contact" class="btn btn-out">Réserver <span class="round" style="background:rgba(0,51,88,.08)"><svg class="i"><use href="#i-arrow-right"/></svg></span></a>
+      </div>
+      <div class="fm hi">
+        <span class="tag">Formule 2</span>
+        <h3>En ligne</h3><div class="dur">12 semaines · 100 % à distance</div>
+        <div class="grp"><h5>Suivi</h5><ul><li><svg class="i ic-sm"><use href="#i-check"/></svg>1 visio de 30 min toutes les semaines</li></ul></div>
+        <div class="grp"><h5>Sport</h5><ul>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>Séances de sport en ligne, à votre rythme</li>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>1 pesée par semaine avec analyse, à envoyer chaque lundi</li></ul></div>
+        <div class="grp"><h5>Alimentation</h5><ul>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>Envoi des menus et recettes associées pour les 12 semaines, tous les vendredis</li></ul></div>
+        <div class="grp"><h5>Gestion du stress et sommeil</h5><ul>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>1 exercice de gestion des émotions et du stress à faire tous les jours</li></ul></div>
+        <div class="grp"><h5>Compléments alimentaires</h5><ul>
+          <li><svg class="i ic-sm"><use href="#i-check"/></svg>Envoi postal des compléments nécessaires à vos besoins</li></ul></div>
+        <a href="#contact" class="btn btn-sage">Réserver <span class="round" style="background:rgba(0,51,88,.12)"><svg class="i"><use href="#i-arrow-right"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="offert rv">
+      <div class="lab">Offert</div>
+      <ul>
+        <li><svg class="i"><use href="#i-scale-2"/></svg>1 balance à impédancemétrie</li>
+        <li><svg class="i"><use href="#i-watch"/></svg>1 montre connectée</li>
+      </ul>
+    </div>
+
+    <div class="figure rv" style="margin-top:16px">
+      <img src="images/formules.avif" alt="Comparatif détaillé des formules présentiel et en ligne" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMPAGNEMENTS -->
+<section id="accomp" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="tag">Mes accompagnements</span><h2>Commencez par ce qui vous <span class="serif">ressemble.</span></h2></div>
+      <p>Un appel découverte gratuit, un bilan, le programme complet ou simplement des recettes adaptées.</p>
+    </div>
+    <div class="rows rv">
+      <div class="row">
+        <div class="ph"><img src="images/offre-appel.avif" alt="Appel découverte" loading="lazy"></div>
+        <div><h4>Appel gratuit</h4><div class="meta">30 minutes</div></div>
+        <div class="d">On fait le point sur votre situation et je vous dis honnêtement si je peux vous aider.</div>
+        <div class="meta">Offert</div>
+        <a href="#contact" class="btn btn-dark btn-sm">Réserver</a>
+      </div>
+      <div class="row">
+        <div class="ph"><img src="images/offre-analyse.avif" alt="Analyse biologique" loading="lazy"></div>
+        <div><h4>Analyse biologique</h4><div class="meta">Bilan complet</div></div>
+        <div class="d">Comprendre ce qui se passe réellement dans votre corps pour cibler la complémentation.</div>
+        <div class="meta">Sur devis</div>
+        <a href="#contact" class="btn btn-dark btn-sm">Réserver</a>
+      </div>
+      <div class="row">
+        <div class="ph"><img src="images/offre-programme.avif" alt="Programme Menoboost en ligne" loading="lazy"></div>
+        <div><h4>Menoboost en ligne</h4><div class="meta">3 mois</div></div>
+        <div class="d">Le programme complet : mouvement, alimentation, mental et complémentation.</div>
+        <div class="meta">12 semaines</div>
+        <a href="#contact" class="btn btn-green btn-sm">Réserver</a>
+      </div>
+      <div class="row">
+        <div class="ph"><img src="images/offre-recettes.avif" alt="Menus et recettes" loading="lazy"></div>
+        <div><h4>Menus &amp; recettes</h4><div class="meta">Ressource</div></div>
+        <div class="d">Des repas adaptés à vos besoins, simples à préparer, pensés pour la ménopause.</div>
+        <div class="meta">Téléchargeable</div>
+        <a href="#contact" class="btn btn-dark btn-sm">Réserver</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMOIGNAGES -->
+<section id="temoignages" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="tag">Témoignages clientes</span><h2>Elles ont <span class="serif">repris la main.</span></h2></div>
+      <p>Chaque organisme est différent — mais toutes repartent avec des repères clairs.</p>
+    </div>
+    <div class="tcards rv">
+      <div class="tc">
+        <div class="tc-top"><span class="qm"><svg class="i fill"><use href="#i-quote"/></svg></span><div class="stars"><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg></div></div>
+        <p>J'ai perdu 8 kg en 12 semaines, mais surtout j'ai retrouvé un sommeil que je n'avais plus depuis trois ans.</p>
+        <div class="who"><div class="ph av"><img src="images/avatar-1.jpg" alt="" loading="lazy"></div><div><b>Sylvie, 54 ans</b><span>Programme 3 mois</span></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-top"><span class="qm"><svg class="i fill"><use href="#i-quote"/></svg></span><div class="stars"><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg></div></div>
+        <p>Enfin quelqu'un qui m'explique ce qui se passe dans mon corps, au lieu de me dire que c'est normal.</p>
+        <div class="who"><div class="ph av"><img src="images/avatar-2.jpg" alt="" loading="lazy"></div><div><b>Nathalie, 48 ans</b><span>Péri-ménopause</span></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-top"><span class="qm"><svg class="i fill"><use href="#i-quote"/></svg></span><div class="stars"><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg><svg class="i fill"><use href="#i-star"/></svg></div></div>
+        <p>Les bouffées de chaleur ont nettement diminué et je me sens à nouveau moi-même. Céline ne vous lâche pas.</p>
+        <div class="who"><div class="ph av"><img src="images/avatar-3.jpg" alt="" loading="lazy"></div><div><b>Corinne, 51 ans</b><span>Formule intégrale</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta rv">
+      <span class="tag" style="background:rgba(168,196,148,.2);color:var(--green-lt)">Conseils et vitalité</span>
+      <h2 style="margin-top:22px">Et si cette étape devenait<br>votre <span class="green">meilleure version</span> ?</h2>
+      <p>Réservez votre appel découverte, gratuit et sans engagement. On regarde ensemble où vous en êtes et par quoi commencer.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-sage"><svg class="i"><use href="#i-calendar"/></svg>Réserver sur Calendly</a>
+        <a href="tel:+33687164758" class="tel"><svg class="i"><use href="#i-phone"/></svg>06 87 16 47 58</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#" class="logo sm"><img src="images/logo-menoboost.png" alt="Ménoboost — Health &amp; Sport"></a>
+        <p style="margin-top:16px;max-width:34ch;color:var(--muted);font-size:15px">Ménopause &amp; vitalité. Un accompagnement complet pour les femmes de plus de 40 ans, en visio ou en présentiel.</p>
+      </div>
+      <div><h5>Navigation</h5><ul><li><a href="#">Accueil</a></li><li><a href="#about">Qui suis-je ?</a></li><li><a href="#programme">Programmes</a></li><li><a href="#accomp">Accompagnements</a></li></ul></div>
+      <div><h5>Ressources</h5><ul><li><a href="#temoignages">Témoignages</a></li><li><a href="#">Conseils &amp; vitalité</a></li><li><a href="#">Menus &amp; recettes</a></li><li><a href="#">Se connecter</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="tel:+33687164758">06 87 16 47 58</a></li><li><a href="#">Réserver un RDV Calendly</a></li><li><a href="#">contact@menoboost.fr</a></li><li>Visio ou présentiel</li></ul></div>
+    </div>
+    <div class="f-words">
+      Bien-être <svg class="i fill"><use href="#i-dot"/></svg> Vitalité <svg class="i fill"><use href="#i-dot"/></svg> Nutrition <svg class="i fill"><use href="#i-dot"/></svg> Sérénité
+    </div>
+    <div class="f-bot">
+      <span>© 2026 MENOBOOST — Ménopause Vitalité. Tous droits réservés.</span>
+      <span>Mentions légales · CGV · Confidentialité</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
