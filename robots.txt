@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /images/_inutilisees/
+
+Sitemap: https://www.menoboost.fr/sitemap.xml

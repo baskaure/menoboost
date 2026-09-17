@@ -1,0 +1,75 @@
+# Ménoboost — notes de maintenance
+
+## 1. Brancher Calendly (à faire dès réception des liens)
+
+Tout se règle dans **`assets/site.js`**, tout en haut du fichier :
+
+```js
+const CALENDLY = {
+  masterclass: "",   // ex. "https://calendly.com/menoboost/masterclass"
+  appel: ""          // ex. "https://calendly.com/menoboost/appel-decouverte"
+};
+```
+
+Tant que ces champs sont vides, le site ne casse pas : la page masterclass affiche
+un bloc « Calendrier d'inscription bientôt en ligne » à la place de l'embed, et le
+formulaire de candidature renvoie vers `contact@menoboost.fr`.
+
+Une fois les liens renseignés :
+- l'embed Calendly s'affiche automatiquement dans la section **Inscription** ;
+- le formulaire de candidature ouvre Calendly **en pop-up, pré-rempli**.
+
+## 2. Questions personnalisées Calendly (événement « appel découverte »)
+
+Le formulaire de candidature transmet ses réponses via les paramètres `a1`…`a7`.
+Calendly numérote ces paramètres **dans l'ordre de création des questions**. Créez-les
+donc exactement dans cet ordre :
+
+| Ordre | Question à créer dans Calendly | Champ du formulaire |
+|-------|-------------------------------|---------------------|
+| a1 | Votre téléphone | Téléphone |
+| a2 | Votre tranche d'âge | Tranche d'âge |
+| a3 | Où en êtes-vous ? | Péri-ménopause / ménopause / … |
+| a4 | Qu'est-ce qui vous pèse le plus ? | Symptômes (réponses multiples) |
+| a5 | Bilan sanguin de moins de 6 mois ? | Bilan sanguin |
+| a6 | Format souhaité | Présentiel / en ligne |
+| a7 | Objectif à 3 mois | Zone de texte |
+
+Les champs *Prénom*, *Nom* et *E-mail* alimentent les champs standard `name` et `email`.
+
+Si l'ordre change côté Calendly, ajustez les attributs `data-cal-answer="aN"` dans
+`masterclass.html`.
+
+## 3. Changer la date de la masterclass
+
+Trois endroits, à garder cohérents :
+1. `assets/site.js` → `MASTERCLASS_DATE` (et l'attribut `data-date` du compte à rebours) ;
+2. `masterclass.html` → la carte « Jeudi 8 octobre » dans `.mc-facts` ;
+3. `masterclass.html` → le bloc JSON-LD en bas de page (`startDate`, `endDate`).
+
+## 4. Structure
+
+```
+index.html              accueil
+masterclass.html        inscription masterclass + formulaire de candidature
+blog/index.html         liste des articles
+blog/*.html             4 articles SEO
+assets/style.css        feuille de style commune à toutes les pages
+assets/site.js          script commun (menu, Calendly, formulaire, compte à rebours)
+assets/icons.sprite.html  source du sprite d'icônes (non chargé par le site)
+sitemap.xml, robots.txt
+```
+
+Le sprite SVG est recopié en haut du `<body>` de chaque page. Si vous ajoutez une
+icône, modifiez `assets/icons.sprite.html` puis reportez le bloc dans les pages
+concernées.
+
+## 5. Avant la mise en ligne
+
+- [ ] Renseigner les deux liens Calendly.
+- [ ] Vérifier le domaine : les balises `canonical`, Open Graph, le `sitemap.xml` et
+      le `robots.txt` utilisent `https://www.menoboost.fr` — à remplacer si besoin.
+- [ ] Soumettre `sitemap.xml` dans la Google Search Console.
+- [ ] Créer les pages Mentions légales / CGV / Confidentialité (liens présents en
+      pied de page mais encore inactifs).
+- [ ] Ajouter une image Open Graph dédiée (1200 × 630) pour la masterclass.
