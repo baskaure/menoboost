@@ -6,17 +6,21 @@ Tout se règle dans **`assets/site.js`**, tout en haut du fichier :
 
 ```js
 const CALENDLY = {
-  masterclass: "",   // <-- reste a fournir
-  appel: "https://calendly.com/d/dvny-hqr-dhq/diagnostic-offert"   // Diagnostic offert
+  masterclass: "https://calendly.com/d/dvny-hqr-dhq/diagnostic-offert",
+  appel:       "https://calendly.com/d/dvny-hqr-dhq/diagnostic-offert"
 };
 ```
 
-**État actuel :**
-- `appel` est branché → le formulaire de candidature et les boutons « Réserver mon
-  appel » ouvrent Calendly en pop-up, pré-rempli avec les réponses.
-- `masterclass` est vide → la section Inscription affiche le bloc « Calendrier
-  d'inscription bientôt en ligne ». Collez l'URL pour activer l'embed, rien d'autre
-  à faire.
+**État actuel :** les deux clés pointent vers le même événement, « Diagnostic offert ».
+La section Inscription affiche donc l'embed Calendly, et le formulaire de candidature
+ouvre ce même événement en pop-up pré-rempli.
+
+Dès que vous créez un événement Calendly dédié à la masterclass (webinaire, places
+multiples), remplacez la première ligne : c'est la seule modification à faire.
+
+> Si vous avez la page ouverte dans le navigateur, faites un rechargement forcé
+> (**Ctrl + Maj + R**) après chaque modification de `site.js` — sinon le navigateur
+> sert l'ancienne version depuis son cache.
 
 `CALENDLY_BRANDING` est à `false` : les paramètres de couleur de l'embed sont une
 option payante chez Calendly et peuvent empêcher le widget de se charger sur l'offre

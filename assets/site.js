@@ -9,8 +9,10 @@
    au lieu d'un embed casse. Collez simplement l'URL pour l'activer.
    ========================================================================== */
 const CALENDLY = {
-  masterclass: "",   // <-- inscription a la prochaine masterclass (pas encore fourni)
-  appel: "https://calendly.com/d/dvny-hqr-dhq/diagnostic-offert"
+  // Pour l'instant les deux pointent vers le meme evenement « Diagnostic offert ».
+  // Des que vous creez un evenement dedie a la masterclass, remplacez la 1re ligne.
+  masterclass: "https://calendly.com/d/dvny-hqr-dhq/diagnostic-offert",
+  appel:       "https://calendly.com/d/dvny-hqr-dhq/diagnostic-offert"
 };
 
 /* Personnalisation des couleurs de l'embed : reservee aux offres payantes Calendly.
