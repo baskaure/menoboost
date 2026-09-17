@@ -3,16 +3,20 @@
    ============================================================================
 
    >>> SEUL ENDROIT A MODIFIER POUR BRANCHER CALENDLY <<<
-   Remplacez les deux chaines vides ci-dessous par vos liens Calendly, par ex. :
-     masterclass : "https://calendly.com/menoboost/masterclass"
-     appel       : "https://calendly.com/menoboost/appel-decouverte"
-   Tant qu'elles restent vides, le site affiche proprement un bloc « a venir »
-   au lieu d'un embed casse, et les formulaires previennent la visiteuse.
+   « appel » est branche sur l'evenement « Diagnostic offert ».
+   « masterclass » attend encore son lien : tant qu'il reste vide, la section
+   Inscription affiche le bloc « Calendrier d'inscription bientot en ligne »
+   au lieu d'un embed casse. Collez simplement l'URL pour l'activer.
    ========================================================================== */
 const CALENDLY = {
-  masterclass: "",   // <-- inscription a la prochaine masterclass
-  appel: ""          // <-- appel decouverte / candidature programme
+  masterclass: "",   // <-- inscription a la prochaine masterclass (pas encore fourni)
+  appel: "https://calendly.com/d/dvny-hqr-dhq/diagnostic-offert"
 };
+
+/* Personnalisation des couleurs de l'embed : reservee aux offres payantes Calendly.
+   Laissez false si vous etes sur l'offre gratuite, sinon le widget peut refuser de
+   se charger. Passez a true une fois sur une offre Standard ou superieure. */
+const CALENDLY_BRANDING = false;
 
 /* Date et heure de la prochaine masterclass (format ISO, heure de Paris).
    Sert au compte a rebours ET au schema.org Event de la page masterclass.
@@ -63,9 +67,11 @@ function loadCalendly() {
 function calendlyUrl(base, prefill) {
   const u = new URL(base);
   u.searchParams.set('hide_gdpr_banner', '1');
-  u.searchParams.set('background_color', 'ffffff');
-  u.searchParams.set('text_color', '16262f');
-  u.searchParams.set('primary_color', '4c7539');
+  if (CALENDLY_BRANDING) {
+    u.searchParams.set('background_color', 'ffffff');
+    u.searchParams.set('text_color', '16262f');
+    u.searchParams.set('primary_color', '4c7539');
+  }
   Object.entries(prefill || {}).forEach(([k, v]) => { if (v) u.searchParams.set(k, v); });
   return u.toString();
 }

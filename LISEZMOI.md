@@ -6,18 +6,21 @@ Tout se règle dans **`assets/site.js`**, tout en haut du fichier :
 
 ```js
 const CALENDLY = {
-  masterclass: "",   // ex. "https://calendly.com/menoboost/masterclass"
-  appel: ""          // ex. "https://calendly.com/menoboost/appel-decouverte"
+  masterclass: "",   // <-- reste a fournir
+  appel: "https://calendly.com/d/dvny-hqr-dhq/diagnostic-offert"   // Diagnostic offert
 };
 ```
 
-Tant que ces champs sont vides, le site ne casse pas : la page masterclass affiche
-un bloc « Calendrier d'inscription bientôt en ligne » à la place de l'embed, et le
-formulaire de candidature renvoie vers `contact@menoboost.fr`.
+**État actuel :**
+- `appel` est branché → le formulaire de candidature et les boutons « Réserver mon
+  appel » ouvrent Calendly en pop-up, pré-rempli avec les réponses.
+- `masterclass` est vide → la section Inscription affiche le bloc « Calendrier
+  d'inscription bientôt en ligne ». Collez l'URL pour activer l'embed, rien d'autre
+  à faire.
 
-Une fois les liens renseignés :
-- l'embed Calendly s'affiche automatiquement dans la section **Inscription** ;
-- le formulaire de candidature ouvre Calendly **en pop-up, pré-rempli**.
+`CALENDLY_BRANDING` est à `false` : les paramètres de couleur de l'embed sont une
+option payante chez Calendly et peuvent empêcher le widget de se charger sur l'offre
+gratuite. Passez-le à `true` si vous êtes sur une offre Standard ou supérieure.
 
 ## 2. Questions personnalisées Calendly (événement « appel découverte »)
 
