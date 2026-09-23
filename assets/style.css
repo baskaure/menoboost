@@ -301,8 +301,25 @@ footer a:hover{color:var(--navy)}
    PAGES INTERNES — en-tete commun (masterclass, blog, article)
    ============================================================ */
 .page-hero{padding:160px 0 70px;position:relative;overflow:hidden;background:var(--navy);color:#fff;isolation:isolate}
-.page-hero::before{content:"";position:absolute;width:900px;height:900px;border-radius:50%;left:50%;translate:-50% 0;top:-620px;
-  background:radial-gradient(circle,rgba(168,196,148,.22),transparent 62%);z-index:-1}
+/* meme traitement que la hero de l'accueil : photo plein cadre, verre marine par-dessus,
+   la photo se devoile à droite là où il n'y a pas de texte. */
+/* largeur du panneau de verre : calee sur la colonne de texte, jamais moins */
+:root{--ph-glass:min(100%,max(62%,880px))}
+/* 1. photo plein cadre, c'est elle que le verre rend floue */
+.ph-bg{position:absolute;inset:0;z-index:-5;overflow:hidden;background:var(--navy-900)}
+.ph-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;transform:scaleX(-1)}
+/* 2. deuxieme copie, cadree dans la bande de droite pour que le sujet y soit centre */
+.ph-photo{position:absolute;inset:0 0 0 auto;width:calc(100% - var(--ph-glass));z-index:-4;overflow:hidden}
+.ph-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 10%}
+/* 3. voile, assombri en bas pour asseoir les cartes */
+.ph-tint{position:absolute;inset:0;z-index:-3;
+  background:linear-gradient(180deg,rgba(0,38,63,.26) 0%,rgba(0,51,88,.36) 58%,rgba(0,38,63,.7) 100%)}
+/* 4. le panneau de verre */
+.ph-glass{position:absolute;inset:0 auto 0 0;width:var(--ph-glass);z-index:-2;
+  background:rgba(0,51,88,.84);border-right:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(30px) saturate(1.25);-webkit-backdrop-filter:blur(30px) saturate(1.25)}
+.page-hero::before{content:"";position:absolute;width:660px;height:660px;border-radius:50%;left:-300px;bottom:-330px;
+  background:radial-gradient(circle,rgba(168,196,148,.22),transparent 65%);z-index:-1}
 .page-hero .tag{background:rgba(168,196,148,.2);color:var(--green-lt)}
 .page-hero .tag::before{background:var(--green-lt);box-shadow:0 0 0 3px rgba(168,196,148,.25)}
 .page-hero h1{font-size:clamp(36px,5vw,68px);margin-top:24px;font-weight:600;letter-spacing:-.04em;max-width:18ch}
@@ -320,6 +337,7 @@ footer a:hover{color:var(--navy)}
    MASTERCLASS
    ============================================================ */
 .mc-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px}
+.mc-facts.three{grid-template-columns:repeat(3,1fr);max-width:780px}
 .mc-fact{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:20px 22px;backdrop-filter:blur(10px)}
 .mc-fact .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(168,196,148,.22);color:var(--green-lt)}
 .mc-fact .ic svg.i{width:19px;height:19px}
@@ -327,11 +345,23 @@ footer a:hover{color:var(--navy)}
 .mc-fact .v{font-size:13px;color:rgba(255,255,255,.66);margin-top:3px;line-height:1.4}
 
 /* compte a rebours */
-.countdown{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
-.cd-unit{background:rgba(255,255,255,.95);border-radius:18px;padding:14px 18px;min-width:84px;text-align:center}
-.cd-unit .n{font-family:"Bricolage Grotesque",sans-serif;font-size:32px;line-height:1;font-weight:700;letter-spacing:-.04em;color:var(--navy);font-variant-numeric:tabular-nums}
-.cd-unit .l{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:6px;font-weight:600}
-.cd-over{background:rgba(255,255,255,.95);border-radius:18px;padding:16px 22px;color:var(--navy);font-weight:600;font-size:15px}
+/* panneau « prochaine session » : rythme, date et compte a rebours reunis */
+.mc-next{margin-top:34px;max-width:780px;display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:space-between;gap:24px 36px;padding:22px 26px;border-radius:26px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px)}
+.mc-rythme{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:700;color:var(--green-lt)}
+.mc-rythme svg.i{width:15px;height:15px}
+.mc-next-date{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(21px,2.4vw,29px);font-weight:600;
+  letter-spacing:-.035em;line-height:1.12;margin-top:11px;color:rgba(255,255,255,.62)}
+.mc-next-date b{display:block;font-weight:600;color:#fff}
+
+.countdown{display:flex;gap:8px;flex-wrap:wrap}
+.cd-unit{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:15px;
+  padding:11px 13px;min-width:64px;text-align:center}
+.cd-unit .n{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;line-height:1;font-weight:700;letter-spacing:-.04em;color:#fff;font-variant-numeric:tabular-nums}
+.cd-unit .l{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:6px;font-weight:600}
+.cd-over{color:rgba(255,255,255,.88);font-weight:600;font-size:14.5px;max-width:34ch}
 
 /* au programme de la masterclass */
 .mc-prog{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
@@ -433,9 +463,36 @@ form.mb-form .btn{margin-top:26px;width:100%;justify-content:center;min-height:5
 .f-done .ic svg.i{width:31px;height:31px;stroke-width:2.2}
 .f-done h4{font-size:26px;color:var(--navy);margin-top:22px;font-weight:600}
 .f-done p{color:var(--muted);margin-top:12px;max-width:40ch;margin-inline:auto}
-.f-done .btn{margin-top:26px;width:auto;display:inline-flex}
+form.mb-form .f-done .btn{margin-top:26px;width:auto;min-height:0;padding:13px 26px;display:inline-flex}
 form.mb-form.sent .f-body{display:none}
 form.mb-form.sent .f-done{display:block}
+
+/* carte d'inscription courte : bandeau date + quatre champs */
+.signup{max-width:860px;margin:52px auto 0;background:#fff;border:1px solid var(--line);border-radius:30px;
+  overflow:hidden;box-shadow:0 34px 64px -48px rgba(0,51,88,.6)}
+.signup-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;
+  padding:19px 34px;background:var(--mint);border-bottom:1px solid var(--line)}
+.signup-when{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:var(--navy)}
+.signup-when b{font-weight:600}
+.signup-when svg.i{width:17px;height:17px;color:var(--green-dp)}
+.signup-free{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--green-dp)}
+form.mb-form.bare{background:none;border:0;border-radius:0;padding:34px}
+.btn-link{display:block;width:fit-content;margin:14px auto 0;font-size:13.5px;font-weight:600;color:var(--muted);
+  text-decoration:underline;text-underline-offset:3px;transition:color .3s}
+.btn-link:hover{color:var(--green-dp)}
+
+/* formulaire en plusieurs pages (questionnaire du groupe WhatsApp) */
+.form-solo{grid-template-columns:1fr;max-width:820px;margin-inline:auto}
+.f-prog{height:4px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:12px}
+.f-prog span{display:block;height:100%;width:50%;border-radius:99px;background:var(--green-dp);transition:width .35s ease}
+.f-count{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:26px}
+.f-intro{font-size:15px;color:var(--muted);line-height:1.6;margin:-8px 0 26px}
+form.mb-form.stepped .f-page{display:none}
+form.mb-form.stepped .f-page.on{display:block}
+.f-nav{display:flex;gap:12px;align-items:center;margin-top:26px}
+.f-nav .btn{margin-top:0;flex:1}
+.f-nav .btn.back{flex:0 0 auto;width:auto;min-width:120px}
+
 
 /* ============================================================
    EMBED CALENDLY
@@ -627,6 +684,8 @@ form.mb-form.sent .f-done{display:block}
 /* ---- responsive des pages internes (masterclass / blog / article) ---- */
 @media(max-width:1060px){
   .page-hero{padding:130px 0 56px}
+  .ph-photo{display:none}
+  .ph-glass{width:100%;border-right:0;background:rgba(0,51,88,.88)}
   .mc-facts{grid-template-columns:1fr 1fr}
   .mc-prog{grid-template-columns:1fr 1fr}
   .mc-fit,.form-wrap,.article{grid-template-columns:1fr}
@@ -650,9 +709,16 @@ form.mb-form.sent .f-done{display:block}
   .page-hero{padding:120px 0 48px}
   .mc-facts,.mc-prog,.post-grid,.choices,.f-row{grid-template-columns:1fr}
   .post-card.lead{grid-column:span 1}
-  .cd-unit{min-width:0;flex:1;padding:12px 10px}
-  .cd-unit .n{font-size:26px}
+  .mc-next{padding:20px;gap:18px}
+  .mc-facts.three{grid-template-columns:1fr}
+  .countdown{width:100%}
+  .cd-unit{min-width:0;flex:1;padding:11px 8px}
+  .cd-unit .n{font-size:23px}
+  .signup-head{padding:16px 20px}
+  form.mb-form.bare{padding:24px 20px}
   form.mb-form{padding:26px 20px;border-radius:24px}
+  .f-nav{flex-direction:column-reverse}
+  .f-nav .btn,.f-nav .btn.back{width:100%;flex:none}
   .form-side{padding:28px 22px;border-radius:24px}
   .cal-embed{height:1120px}
   .article-body{font-size:16.5px}

@@ -86,12 +86,13 @@
   <div class="wrap"><div class="mnav" id="mobile-menu" aria-hidden="true">
     <a class="ml" href="index.html">Accueil<svg class="i"><use href="#i-chevron-right"/></svg></a>
     <a class="ml" href="#inscription">Inscription masterclass<svg class="i"><use href="#i-chevron-right"/></svg></a>
+    <a class="ml" href="#whatsapp">Groupe WhatsApp privé<svg class="i"><use href="#i-chevron-right"/></svg></a>
     <a class="ml" href="#candidature">Candidater au programme<svg class="i"><use href="#i-chevron-right"/></svg></a>
     <a class="ml" href="blog/">Blog<svg class="i"><use href="#i-chevron-right"/></svg></a>
     <a class="ml" href="index.html#about">Qui suis-je&#8239;?<svg class="i"><use href="#i-chevron-right"/></svg></a>
     <a class="ml" href="index.html#programme">Programme<svg class="i"><use href="#i-chevron-right"/></svg></a>
     <div class="mnav-foot">
-      <a href="#inscription" class="btn btn-out">Réserver ma place</a>
+      <a href="#inscription" class="btn btn-out">S'inscrire à la masterclass</a>
       <a href="tel:+33687164758" class="btn btn-green"><svg class="i"><use href="#i-phone"/></svg>06 87 16 47 58</a>
     </div>
   </div></div>
@@ -99,6 +100,10 @@
 
 <!-- EN-TETE -->
 <div class="page-hero">
+  <div class="ph-bg" aria-hidden="true"><img src="images/hero.avif" alt="" fetchpriority="high"></div>
+  <div class="ph-photo" aria-hidden="true"><img src="images/hero.avif" alt=""></div>
+  <div class="ph-tint" aria-hidden="true"></div>
+  <div class="ph-glass" aria-hidden="true"></div>
   <div class="wrap">
     <nav class="crumbs" aria-label="Fil d'Ariane">
       <a href="index.html">Accueil</a><svg class="i"><use href="#i-chevron-right"/></svg>
@@ -108,18 +113,20 @@
     <h1>Comprendre sa ménopause en <span class="green">90 minutes</span>.</h1>
     <p class="lede">Vous êtes fatiguée dès le réveil, votre poids grimpe sans que rien n'ait changé, vos nuits sont hachées&#8239;? En une session, Céline Thomelin vous explique ce qui se joue réellement dans votre corps — et par quoi commencer dès le lendemain.</p>
 
-    <div id="countdown" class="countdown" data-date="2026-10-08T19:00:00+02:00" aria-live="polite"></div>
+    <div class="mc-next">
+      <div class="mc-next-l">
+        <span class="mc-rythme"><svg class="i"><use href="#i-calendar"/></svg>Chaque jeudi · 19&#8239;h&#8239;00, heure de Paris</span>
+        <p class="mc-next-date">Prochaine session<br><b data-mc-date>jeudi soir</b></p>
+      </div>
+      <div id="countdown" class="countdown" aria-live="polite"></div>
+    </div>
 
     <div class="hero-cta">
-      <a href="#inscription" class="btn btn-sage">Réserver ma place <span class="round" style="background:rgba(0,51,88,.12)"><svg class="i"><use href="#i-arrow-right"/></svg></span></a>
+      <a href="#inscription" class="btn btn-sage">S'inscrire à la prochaine masterclass <span class="round" style="background:rgba(0,51,88,.12)"><svg class="i"><use href="#i-arrow-right"/></svg></span></a>
       <a href="#candidature" class="btn btn-out" style="border-color:rgba(255,255,255,.28);color:#fff">Candidater au programme</a>
     </div>
 
-    <div class="mc-facts">
-      <div class="mc-fact">
-        <div class="ic"><svg class="i"><use href="#i-calendar"/></svg></div>
-        <div class="k">Jeudi 8 octobre</div><div class="v">2026, à 19 h 00 (Paris)</div>
-      </div>
+    <div class="mc-facts three">
       <div class="mc-fact">
         <div class="ic"><svg class="i"><use href="#i-clock"/></svg></div>
         <div class="k">90 minutes</div><div class="v">dont 30 min de questions<br>en direct</div>
@@ -208,17 +215,253 @@
     <div class="sec-head rv">
       <div>
         <span class="tag">Inscription</span>
-        <h2>Réservez votre place pour la <span class="serif">prochaine session.</span></h2>
+        <h2>Réservez votre place pour <span class="serif">jeudi soir.</span></h2>
       </div>
-      <p>Choisissez votre créneau ci-dessous. Vous recevrez immédiatement la confirmation, le lien de connexion, puis un rappel la veille et une heure avant.</p>
+      <p>Quatre informations, rien de plus. Le lien de connexion arrive tout de suite par e-mail, suivi d'un rappel la veille et d'un dernier une heure avant.</p>
     </div>
 
-    <div class="cal-block rv">
-      <div class="cal-embed" data-cal="masterclass"></div>
-      <div class="cal-todo">
-        <div class="ic"><svg class="i"><use href="#i-calendar"/></svg></div>
-        <h4>Calendrier d'inscription bientôt en ligne</h4>
+    <div class="signup rv">
+      <div class="signup-head">
+        <span class="signup-when"><svg class="i"><use href="#i-calendar"/></svg><span><b data-mc-date>jeudi soir</b>, 19&#8239;h&#8239;00 · en visio</span></span>
+        <span class="signup-free">Gratuit · replay 7 jours</span>
       </div>
+
+      <!-- Les reponses partent vers le webhook INSCRIPTION_ENDPOINT : voir assets/site.js -->
+      <form class="mb-form bare" data-post="masterclass" novalidate>
+        <div class="f-body">
+          <div class="f-row">
+            <div class="field">
+              <label for="mc-prenom">Prénom <span class="req">*</span></label>
+              <input type="text" id="mc-prenom" name="prenom" autocomplete="given-name" placeholder="Marie" required>
+              <span class="msg">Merci d'indiquer votre prénom.</span>
+            </div>
+            <div class="field">
+              <label for="mc-nom">Nom <span class="req">*</span></label>
+              <input type="text" id="mc-nom" name="nom" autocomplete="family-name" placeholder="Durand" required>
+              <span class="msg">Merci d'indiquer votre nom.</span>
+            </div>
+          </div>
+          <div class="f-row">
+            <div class="field">
+              <label for="mc-email">E-mail <span class="req">*</span></label>
+              <input type="email" id="mc-email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required>
+              <span class="msg">Cette adresse e-mail ne semble pas valide.</span>
+            </div>
+            <div class="field">
+              <label for="mc-tel">Téléphone <span class="req">*</span></label>
+              <input type="tel" id="mc-tel" name="tel" autocomplete="tel" placeholder="06 12 34 56 78" required>
+              <span class="msg">Merci d'indiquer un numéro où vous joindre.</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="consent">
+              <input type="checkbox" name="rgpd" required>
+              <span>J'accepte de recevoir le lien de connexion, les rappels et le replay. Mes informations ne sont ni revendues ni transmises à des tiers, et je peux me désinscrire à tout moment. <a href="index.html#contact">En savoir plus</a>.</span>
+            </label>
+            <span class="msg">Votre accord est nécessaire pour vous inscrire.</span>
+          </div>
+
+          <button type="submit" class="btn btn-green">
+            <svg class="i"><use href="#i-calendar"/></svg>Je réserve ma place
+          </button>
+          <p class="f-foot"><svg class="i"><use href="#i-lock"/></svg> Sans carte bancaire. Si vous ne pouvez pas être là en direct, le replay vous est envoyé le lendemain.</p>
+        </div>
+
+        <div class="f-done" role="status">
+          <div class="ic"><svg class="i"><use href="#i-check"/></svg></div>
+          <h4>C'est noté, à <span data-mc-date>jeudi</span>&#8239;!</h4>
+          <p>Votre place est réservée.</p>
+          <a href="#whatsapp" class="btn btn-out">Rejoindre le groupe WhatsApp</a>
+          <a href="#" class="btn-link" data-form-reset>Corriger mes coordonnées</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- GROUPE WHATSAPP -->
+<section id="whatsapp" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="tag">Groupe privé · MénoBoost+</span>
+        <h2>Et entre deux jeudis, <span class="serif">le groupe WhatsApp.</span></h2>
+      </div>
+      <p>MénoBoost+ réunit les femmes qui suivent la masterclass&#8239;: on y pose ses questions entre deux sessions, on partage ce qui marche, et Céline y répond régulièrement. L'accès est gratuit et se débloque avec ce court questionnaire.</p>
+    </div>
+
+    <div class="form-wrap form-solo rv">
+      <form class="mb-form" data-post="whatsapp" data-steps novalidate>
+        <div class="f-body">
+
+          <div class="f-prog"><span></span></div>
+          <div class="f-count" data-step-count>Page 1 sur 2</div>
+
+          <!-- ============================ PAGE 1 : le questionnaire -->
+          <div class="f-page">
+            <div class="f-step">1 · Votre situation</div>
+            <p class="f-intro">Ces réponses servent à Céline pour orienter les échanges du groupe. Comptez deux minutes.</p>
+
+            <div class="f-row">
+              <div class="field">
+                <label for="age">Quel âge avez-vous&#8239;? <span class="req">*</span></label>
+                <input type="number" id="age" name="age" min="18" max="99" inputmode="numeric" placeholder="52" required>
+                <span class="msg">Merci d'indiquer votre âge.</span>
+              </div>
+              <div class="field">
+                <label for="pays">Dans quel pays vivez-vous&#8239;? <span class="req">*</span></label>
+                <input type="text" id="pays" name="pays" autocomplete="country-name" placeholder="France" required>
+                <span class="msg">Merci d'indiquer votre pays.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Qu'avez-vous déjà essayé pour rééquilibrer vos hormones&#8239;? <span class="req">*</span></label>
+              <span class="hint">Plusieurs réponses possibles.</span>
+              <div class="choices">
+                <label class="choice"><input type="checkbox" name="essais" value="Rien pour l'instant" required>Rien pour l'instant, je n'ai jamais rien essayé</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Naturopathie">Naturopathie</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Compléments alimentaires">Compléments alimentaires</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Phytothérapie / plantes">Phytothérapie, plantes</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Traitement hormonal substitutif (THS)">Traitement hormonal substitutif (THS)</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Acupuncture">Acupuncture</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Jeûne intermittent">Jeûne intermittent</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Régime alimentaire spécifique">Régime alimentaire spécifique</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Sport ou activité physique adaptée">Sport ou activité physique adaptée</label>
+                <label class="choice"><input type="checkbox" name="essais" value="Une autre méthode">Une autre méthode</label>
+              </div>
+              <span class="msg">Sélectionnez au moins une réponse.</span>
+            </div>
+
+            <div class="field">
+              <label>Aujourd'hui, adaptez-vous votre alimentation et votre hygiène de vie à votre équilibre hormonal&#8239;? <span class="req">*</span></label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="adaptation" value="Jamais, je n'ai jamais fait le lien" required>Jamais, je n'ai jamais fait le lien</label>
+                <label class="choice"><input type="radio" name="adaptation" value="Ponctuellement, quand les symptômes deviennent difficiles">Ponctuellement, quand les symptômes deviennent difficiles</label>
+                <label class="choice"><input type="radio" name="adaptation" value="Régulièrement, j'ai déjà mis en place des habitudes précises">Régulièrement, j'ai déjà des habitudes précises</label>
+                <label class="choice"><input type="radio" name="adaptation" value="Je maîtrise le sujet et/ou j'accompagne d'autres femmes">Je maîtrise le sujet, et/ou j'accompagne d'autres femmes</label>
+              </div>
+              <span class="msg">Merci de choisir une réponse.</span>
+            </div>
+
+            <div class="field">
+              <label>Quelle est votre situation professionnelle actuelle&#8239;? <span class="req">*</span></label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="situation" value="Salariée cadre, manager ou dirigeante d'équipe" required>Salariée cadre, manager ou dirigeante d'équipe</label>
+                <label class="choice"><input type="radio" name="situation" value="Salariée employée, technicienne ou agent">Salariée employée, technicienne ou agent</label>
+                <label class="choice"><input type="radio" name="situation" value="Indépendante / profession libérale">Indépendante, profession libérale</label>
+                <label class="choice"><input type="radio" name="situation" value="Entrepreneure / cheffe d'entreprise">Entrepreneure, cheffe d'entreprise</label>
+                <label class="choice"><input type="radio" name="situation" value="Sans emploi / en transition / retraitée">Sans emploi, en transition ou retraitée</label>
+              </div>
+              <span class="msg">Merci de choisir une réponse.</span>
+            </div>
+
+            <div class="field">
+              <label>Envisagez-vous d'être accompagnée pour retrouver votre énergie et votre clarté mentale&#8239;? <span class="req">*</span></label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="accompagnement" value="Oui, c'est une priorité en ce moment" required>Oui, c'est une priorité en ce moment</label>
+                <label class="choice"><input type="radio" name="accompagnement" value="Oui, mais plus tard dans l'année">Oui, mais plus tard dans l'année</label>
+                <label class="choice"><input type="radio" name="accompagnement" value="Peut-être, je me renseigne pour l'instant">Peut-être, je me renseigne pour l'instant</label>
+                <label class="choice"><input type="radio" name="accompagnement" value="Non, je cherche seulement de l'information gratuite">Non, je cherche seulement de l'information gratuite</label>
+              </div>
+              <span class="msg">Merci de choisir une réponse.</span>
+            </div>
+
+            <div class="field">
+              <label for="budget">Imaginez une solution qui règle tout d'un coup&#8239;: l'énergie revient, la tête est claire du matin au soir, vous dormez à nouveau et les symptômes s'arrêtent. Combien seriez-vous prête à payer pour l'obtenir&#8239;? <span class="req">*</span></label>
+              <input type="text" id="budget" name="budget" placeholder="Un ordre de grandeur suffit" required>
+              <span class="msg">Merci d'indiquer un ordre de grandeur.</span>
+            </div>
+
+            <div class="field">
+              <label>Depuis combien de temps connaissez-vous Céline Thomelin&#8239;? <span class="req">*</span></label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="connaissance" value="Moins d'un mois" required>Moins d'un mois</label>
+                <label class="choice"><input type="radio" name="connaissance" value="1 à 3 mois">1 à 3 mois</label>
+                <label class="choice"><input type="radio" name="connaissance" value="3 à 6 mois">3 à 6 mois</label>
+                <label class="choice"><input type="radio" name="connaissance" value="6 à 12 mois">6 à 12 mois</label>
+                <label class="choice"><input type="radio" name="connaissance" value="1 à 2 ans">1 à 2 ans</label>
+                <label class="choice"><input type="radio" name="connaissance" value="Plus de 2 ans">Plus de 2 ans</label>
+              </div>
+              <span class="msg">Merci de choisir une réponse.</span>
+            </div>
+
+            <div class="field">
+              <label>Avez-vous déjà acheté un programme ou une formation en ligne&#8239;? <span class="req">*</span></label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="achat" value="Non, jamais" required>Non, jamais</label>
+                <label class="choice"><input type="radio" name="achat" value="Oui, mais sur d'autres sujets">Oui, mais sur d'autres sujets</label>
+                <label class="choice"><input type="radio" name="achat" value="Oui, sur la ménopause ou l'équilibre hormonal">Oui, sur la ménopause ou l'équilibre hormonal</label>
+              </div>
+              <span class="msg">Merci de choisir une réponse.</span>
+            </div>
+
+            <div class="f-nav">
+              <button type="button" class="btn btn-green" data-next>
+                Continuer<svg class="i"><use href="#i-arrow-right"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ============================ PAGE 2 : les coordonnees -->
+          <div class="f-page">
+            <div class="f-step">2 · Où vous envoyer l'invitation</div>
+            <p class="f-intro">Le lien d'invitation au groupe part sur votre numéro WhatsApp.</p>
+
+            <div class="f-row">
+              <div class="field">
+                <label for="wa-prenom">Prénom <span class="req">*</span></label>
+                <input type="text" id="wa-prenom" name="prenom" autocomplete="given-name" placeholder="Marie" required>
+                <span class="msg">Merci d'indiquer votre prénom.</span>
+              </div>
+              <div class="field">
+                <label for="wa-nom">Nom <span class="req">*</span></label>
+                <input type="text" id="wa-nom" name="nom" autocomplete="family-name" placeholder="Durand" required>
+                <span class="msg">Merci d'indiquer votre nom.</span>
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="field">
+                <label for="wa-email">E-mail <span class="req">*</span></label>
+                <input type="email" id="wa-email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required>
+                <span class="msg">Cette adresse e-mail ne semble pas valide.</span>
+              </div>
+              <div class="field">
+                <label for="wa-tel">Numéro WhatsApp <span class="req">*</span></label>
+                <input type="tel" id="wa-tel" name="tel" autocomplete="tel" placeholder="06 12 34 56 78" required>
+                <span class="msg">Merci d'indiquer le numéro lié à votre compte WhatsApp.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="consent">
+                <input type="checkbox" name="rgpd" required>
+                <span>J'accepte que Ménoboost utilise ces informations pour m'inviter au groupe WhatsApp privé. Elles ne sont ni revendues ni transmises à des tiers, et je peux quitter le groupe à tout moment. <a href="index.html#contact">En savoir plus</a>.</span>
+              </label>
+              <span class="msg">Votre accord est nécessaire pour rejoindre le groupe.</span>
+            </div>
+
+            <div class="f-nav">
+              <button type="button" class="btn btn-out back" data-prev>
+                <svg class="i"><use href="#i-arrow-left"/></svg>Retour
+              </button>
+              <button type="submit" class="btn btn-green">
+                <svg class="i"><use href="#i-users"/></svg>Rejoindre le groupe
+              </button>
+            </div>
+            <p class="f-foot"><svg class="i"><use href="#i-lock"/></svg> Groupe modéré, sans publicité. Votre numéro n'est visible que de Céline.</p>
+          </div>
+
+        </div>
+
+        <div class="f-done" role="status">
+          <div class="ic"><svg class="i"><use href="#i-check"/></svg></div>
+          <h4>Bienvenue dans MénoBoost+&#8239;!</h4>
+          <p>Votre demande est enregistrée.</p>
+          <a href="#" class="btn-link" data-form-reset>Modifier mes réponses</a>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -394,12 +637,16 @@
     </div>
     <div class="faq rv" style="max-width:880px">
       <details>
+        <summary>À quelle fréquence a-t-elle lieu&#8239;?</summary>
+        <div class="a">Chaque semaine, le jeudi à 19&#8239;h&#8239;00 (heure de Paris), pendant 90 minutes. Vous n'avez donc pas de date à attraper au vol&#8239;: inscrivez-vous, et vous êtes placée sur la prochaine session.</div>
+      </details>
+      <details>
         <summary>La masterclass est-elle vraiment gratuite&#8239;?</summary>
         <div class="a">Oui, entièrement. Aucune carte bancaire n'est demandée à l'inscription. Le seul engagement est de bloquer 90 minutes dans votre agenda — et de venir avec vos questions.</div>
       </details>
       <details>
-        <summary>Je ne suis pas disponible ce soir-là. Y a-t-il un replay&#8239;?</summary>
-        <div class="a">Oui. Toutes les inscrites reçoivent le replay par e-mail le lendemain, accessible pendant 7 jours. Inscrivez-vous même si vous ne pouvez pas être là en direct — c'est le seul moyen de le recevoir.</div>
+        <summary>Je ne suis pas disponible ce jeudi-là. Y a-t-il un replay&#8239;?</summary>
+        <div class="a">Oui. Toutes les inscrites reçoivent le replay par e-mail le lendemain, accessible pendant 7 jours. Inscrivez-vous même si vous ne pouvez pas être là en direct — c'est le seul moyen de le recevoir. Et si le jeudi ne vous convient jamais, vous restez inscrite pour les sessions suivantes.</div>
       </details>
       <details>
         <summary>Est-ce que je dois allumer ma caméra&#8239;?</summary>
@@ -474,8 +721,16 @@
       "@type": "Event",
       "name": "Masterclass Ménoboost — Comprendre sa ménopause en 90 minutes",
       "description": "Session en ligne gratuite avec Céline Thomelin : comprendre les changements hormonaux de la péri-ménopause et de la ménopause, et repartir avec trois leviers concrets sur la fatigue, le poids et le sommeil.",
-      "startDate": "2026-10-08T19:00:00+02:00",
-      "endDate": "2026-10-08T20:30:00+02:00",
+      "eventSchedule": {
+        "@type": "Schedule",
+        "repeatFrequency": "P1W",
+        "byDay": "https://schema.org/Thursday",
+        "startDate": "2026-09-01",
+        "endDate": "2027-12-31",
+        "startTime": "19:00:00",
+        "endTime": "20:30:00",
+        "scheduleTimezone": "Europe/Paris"
+      },
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
       "inLanguage": "fr-FR",
